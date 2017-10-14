@@ -1,17 +1,18 @@
 package com.codingSchool.webApp.Repository;
 
 import com.codingSchool.webApp.Domain.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Page<User> findAll(Pageable pageable);
+public interface UserRepository extends CrudRepository<User, Long> {
 
-    User findByUseridAndPassword(long id, String password);
+    @Query("FROM user WHERE email = :email")
+    public User findByEmail(@Param("email") String email);
 
-    User save(User user);
+    @Query("FROM user WHERE password = :password")
+    public User findByPassword(@Param("password") String password);
 
 }
