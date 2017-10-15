@@ -1,11 +1,11 @@
 package com.codingSchool.webApp.Services;
 
-import com.codingSchool.webApp.Domain.User;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 public interface UserService {
 
-    User login(String email, String password) throws AuthenticationException, javax.naming.AuthenticationException;
+    UserDetails loadUserByEmail(String email) throws AuthenticationException, javax.naming.AuthenticationException;
 
 }

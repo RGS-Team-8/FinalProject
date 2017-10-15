@@ -32,7 +32,7 @@ public class User implements Serializable {
     private String address;
 
     @Column(nullable = false, name="typeofuser")
-    private boolean typeofuser;
+    private String typeofuser;
 
     @OneToMany(mappedBy = "user", targetEntity = Service.class)
     private List<Service> services;
@@ -48,7 +48,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Long userid, int ssn, String password, String firstname, String lastname, String email, String address, boolean typeofuser) {
+    public User(Long userid, int ssn, String password, String firstname, String lastname, String email, String address, String typeofuser) {
         this.userid = userid;
         this.ssn = ssn;
         this.password = password;
@@ -115,11 +115,11 @@ public class User implements Serializable {
         this.address = address;
     }
 
-    public boolean isTypeofuser() {
+    public String isTypeofuser() {
         return typeofuser;
     }
 
-    public void setTypeofuser(boolean typeofuser) {
+    public void setTypeofuser(String typeofuser) {
         this.typeofuser = typeofuser;
     }
 }

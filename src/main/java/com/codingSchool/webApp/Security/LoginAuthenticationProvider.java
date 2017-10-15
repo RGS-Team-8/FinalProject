@@ -1,6 +1,5 @@
 package com.codingSchool.webApp.Security;
 
-import com.codingSchool.webApp.Domain.User;
 import com.codingSchool.webApp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -17,11 +16,20 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication ) throws AuthenticationException {
-        String email = authentication.getName().trim();
-        String password = authentication.getCredentials().toString().trim();
-        User user;
+//        String email = authentication.getName().trim();
+//        String password = authentication.getCredentials().toString().trim();
+//        User user;
+//        try {
+//            user =  userService.login(email, password);
+//        } catch (javax.naming.AuthenticationException e) {
+//            e.printStackTrace();
+//        }
+//        return new UsernamePasswordAuthenticationToken(email, password);
+
+        String email = authentication.getName();
+        String password = (String) authentication.getCredentials();
         try {
-            user =  userService.login(email, password);
+            userService.loadUserByEmail(email);
         } catch (javax.naming.AuthenticationException e) {
             e.printStackTrace();
         }
