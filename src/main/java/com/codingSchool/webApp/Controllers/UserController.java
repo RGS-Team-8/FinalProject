@@ -8,19 +8,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 @Controller
-public class HomeController {
-    private final static org.slf4j.Logger logger = LoggerFactory.getLogger(HomeController.class);
+public class UserController {
+    private final static org.slf4j.Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(Model model) {
-        logger.info("Into the main page controller");
-        model.addAttribute("message", "Hello");
+    @RequestMapping(value = "/user/home", method = RequestMethod.GET)
+    public String user(Model model) {
+        logger.info("Into the admin page controller");
+        model.addAttribute("message", "Hello User");
 
         addUsernameInModel(model);
 
-        return "index";
+        return "user";
     }
 
     private void addUsernameInModel(Model model) {

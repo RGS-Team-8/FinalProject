@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-public class HomeController {
-    private final static org.slf4j.Logger logger = LoggerFactory.getLogger(HomeController.class);
+public class AdminController {
+    private final static org.slf4j.Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(Model model) {
-        logger.info("Into the main page controller");
-        model.addAttribute("message", "Hello");
+    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+    public String admin(Model model) {
+        logger.info("Into the admin page controller");
+        model.addAttribute("message", "Hello Admin");
 
         addUsernameInModel(model);
 
-        return "index";
+        return "admin";
     }
 
     private void addUsernameInModel(Model model) {
