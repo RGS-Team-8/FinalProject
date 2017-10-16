@@ -1,6 +1,7 @@
 package com.codingSchool.webApp;
 
 import com.codingSchool.webApp.Security.LoginAuthenticationProvider;
+import com.codingSchool.webApp.Security.SuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,34 +16,24 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private LoginAuthenticationProvider loginAuthenticationProvider;
 
+    @Autowired
+    private SuccessHandler successHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
-//                .and().formLogin().defaultSuccessUrl("/")
-//                .loginPage("/login").and()
-//                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
-
-//        http.authorizeRequests()
-//                .antMatchers("/admin/**").access("hasRole('ROLE_USER')")
-//                .and()
-//                .formLogin().loginPage("/login").failureUrl("/")
-//                .usernameParameter("username").passwordParameter("password")
-//                .and()
-//                .logout().logoutSuccessUrl("/login")
-//                .and()
-//                .csrf();
-
 
     http.authorizeRequests()
         .antMatchers("/admin/**").hasAuthority("ADMIN")
+        .antMatchers("/user/**").hasAuthority("USER")
+        .antMatchers("/css/**", "/js/**").permitAll()
         .anyRequest().fullyAuthenticated()
-        .and().csrf().disable()
-        .formLogin()
+    .and().csrf().disable()
+        .formLogin().successHandler(successHandler)
         .loginPage("/login")
         .permitAll()
         .usernameParameter("email")
         .passwordParameter("password")
-        .and()
+    .and()
         .logout()
         .logoutUrl("/logout")
         .logoutSuccessUrl("/login")
