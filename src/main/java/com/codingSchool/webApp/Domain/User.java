@@ -14,7 +14,7 @@ public class User implements Serializable {
     private Long userid;
 
     @Column(nullable = false, name="ssn", unique = true)
-    private int ssn;
+    private String ssn;
 
     @Column(nullable = false, name="password")
     private String password;
@@ -48,7 +48,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Long userid, int ssn, String password, String firstname, String lastname, String email, String address, String typeofuser) {
+    public User(Long userid, String ssn, String password, String firstname, String lastname, String email, String address, String typeofuser) {
         this.userid = userid;
         this.ssn = ssn;
         this.password = password;
@@ -67,11 +67,11 @@ public class User implements Serializable {
         this.userid = userid;
     }
 
-    public int getSsn() {
+    public String getSsn() {
         return ssn;
     }
 
-    public void setSsn(int ssn) {
+    public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 

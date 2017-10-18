@@ -18,6 +18,7 @@ import java.util.List;
 public class SearchController {
     private static final String SEARCH_FORM = "searchForm";
     public static final String EMAIL_LIST = "emails";
+    public static final String SSN_LIST = "ssns";
 
     @Autowired
     private UserService userService;
@@ -34,14 +35,16 @@ public class SearchController {
                          RedirectAttributes redirectAttributes) {
 
         List emailList = userService.findByEmail(searchForm.getEmail());
+        List ssnList = userService.findBySsn(searchForm.getSsn());
 
-        if(emailList.isEmpty()) {
+        if(emailList.isEmpty() && ssnList.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
             return "redirect:/admin/home";
         }
 
         redirectAttributes.addFlashAttribute(EMAIL_LIST, emailList);
-        System.out.println((emailList.toString()));
+        redirectAttributes.addFlashAttribute(SSN_LIST, ssnList);
+
         return "redirect:/admin/home";
     }
 
