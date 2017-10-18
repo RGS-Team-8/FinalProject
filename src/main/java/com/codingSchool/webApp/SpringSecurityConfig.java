@@ -29,14 +29,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         .anyRequest().fullyAuthenticated()
     .and().csrf().disable()
         .formLogin().successHandler(successHandler)
-        .loginPage("/login")
+        .loginPage("/login") //to url tou LoginPage
         .permitAll()
         .usernameParameter("email")
         .passwordParameter("password")
     .and()
         .logout()
-        .logoutUrl("/logout")
-        .logoutSuccessUrl("/login")
+        .logoutUrl("/logout") //to url tou Logout
+        .logoutSuccessUrl("/login") //redirect sti selida tou Login
         .permitAll();
 
     }

@@ -22,7 +22,7 @@ public class LoginController {
             LOG.error("User not found!");
             model.addAttribute("errorMessage", "User not found! Please try again");
         }
-        model.addAttribute(LOGIN_FORM, new LoginForm());
-        return "login";
+        model.addAttribute(LOGIN_FORM, new LoginForm()); //prosthetei sto modelo mia nea form
+        return "login"; //epistrefei to login.ftl
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -21,5 +22,10 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+    @Override
+    public List<User> findByEmail(String email) { return userRepository.findByEmail(email); }
+
+    @Override
+    public List<User> findAll() { return userRepository.findAll(); }
 
 }

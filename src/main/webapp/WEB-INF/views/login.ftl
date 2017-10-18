@@ -22,7 +22,7 @@
 <div class="form">
     <form action="/login" method="post" id="loginForm" name="loginForm">
         <label for="email">email</label>
-        <input type="text" name="email" id="email" placeholder="email" autocomplete="off"/>
+        <input type="text" name="email" id="email" placeholder="email" omplete="off"/>
 
         <label for="password">Password</label>
         <input type="password" name="password" id="password" placeholder="password"/>

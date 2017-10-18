@@ -25,8 +25,8 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 
         String email = authentication.getName();
         String password = (String) authentication.getCredentials();
-        User user = userService.loadUserByEmailAndPassword(email, password);
 
+        User user = userService.loadUserByEmailAndPassword(email, password);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         if (user.isTypeofuser().equals("ADMIN")) {
             grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
