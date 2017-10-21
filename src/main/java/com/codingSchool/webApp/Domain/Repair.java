@@ -1,6 +1,7 @@
 package com.codingSchool.webApp.Domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -16,7 +17,7 @@ public class Repair implements Serializable {
     private double cost;
 
     @Column(nullable = false, name = "datetime")
-    private String datetime;
+    private Date datetime;
 
     @Column(nullable = false, name = "status")
     private String status;
@@ -34,7 +35,7 @@ public class Repair implements Serializable {
     public Repair() {
     }
 
-    public Repair(Long serviceid, double cost, String datetime, String status, String type, String freetext, User user) {
+    public Repair(Long serviceid, double cost, Date datetime, String status, String type, String freetext, User user) {
         this.serviceid = serviceid;
         this.cost = cost;
         this.datetime = datetime;
@@ -60,11 +61,11 @@ public class Repair implements Serializable {
         this.cost = cost;
     }
 
-    public String getDatetime() {
+    public Date getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(String datetime) {
+    public void setDatetime(Date datetime) {
         this.datetime = datetime;
     }
 
@@ -82,6 +83,10 @@ public class Repair implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getFreetext() {

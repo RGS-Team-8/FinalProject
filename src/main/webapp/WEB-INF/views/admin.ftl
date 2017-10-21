@@ -14,6 +14,23 @@
 <#if username??>
 <h1> Welcome, ${username}</h1>
 
+repairList
+<#if repairList??>
+<h3>Retrieved Repairs:</h3>
+<table>
+    <#list repairList as repair>
+        <tr>
+            <td> Cost:${repair.cost}</td>
+            <td> Datetime: ${repair.datetime}</td>
+            <td> Status: ${repair.status}</td>
+            <td> Type: ${repair.type}</td>
+        </tr>
+    </#list>
+</table>
+<#else>
+<h2> No repairs found </h2>
+</#if>
+
 <form name="searchForm" action="/search" method="post">
     <label>Search by Email:</label><input type="text" name="email" placeholder="Email"/>
     <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN"/>
