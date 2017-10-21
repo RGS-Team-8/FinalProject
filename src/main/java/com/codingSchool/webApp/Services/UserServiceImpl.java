@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+
     @Override
     public List<User> findByEmail(String email) { return userRepository.findByEmail(email); }
 
@@ -30,5 +31,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() { return userRepository.findAll(); }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void insert(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void update(User user) { userRepository.save(user); }
 
 }

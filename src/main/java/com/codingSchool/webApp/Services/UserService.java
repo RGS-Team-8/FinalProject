@@ -16,4 +16,10 @@ public interface UserService {
 
     List<User> findAll();
 
+    void save(User user);
+
+    void insert(User user);
+
+    void update(User user);
+
 }

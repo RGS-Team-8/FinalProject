@@ -43,7 +43,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //auth.userDetailsService(userDetailsService()); //Credentials from UserDetails Service
+        //auth.userDetailsService(userDetailsService()); //Credentials from UserDetails Repair
         auth.authenticationProvider(loginAuthenticationProvider); //Credentials from repository
         //auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN"); //Hardcoded Credentials
     }

@@ -1,11 +1,13 @@
 package com.codingSchool.webApp.Controllers;
 
+import com.codingSchool.webApp.Converters.UserUpdater;
 import com.codingSchool.webApp.Domain.User;
 import com.codingSchool.webApp.Model.SearchForm;
 import com.codingSchool.webApp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,6 +49,16 @@ public class SearchController {
 
         return "redirect:/admin/home";
     }
-
+//    @RequestMapping(value="/search", method = RequestMethod.POST)
+//    public String update(@ModelAttribute(SEARCH_FORM) SearchForm searchForm,
+//                         BindingResult bindingResult, HttpSession session,
+//                         RedirectAttributes redirectAttributes) {
+//
+//        User user = UserUpdater.updateUserObject(searchForm);
+//        userService.insert(user);
+//        session.setAttribute("username", searchForm.getUserid());
+//
+//        return "redirect:/admin/home";
+//    }
 
 }

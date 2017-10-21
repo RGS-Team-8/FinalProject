@@ -21,11 +21,13 @@
     <input type="submit" value="Search">
 </form>
 
+<a href="http://localhost:8080/admin/home/insert">Insert</a>
+
 <#if emails??>
 <h3>Retrieved Users (Search via Email)</h3>
 
 <#list emails as email>
-    <form name"retrieveUserData" action="/search" method="GET">
+    <form name"retrieveUserData" action="/search" method="post">
         <label>User Id:</label><input type="text" name="email" value = "${email.userid}" /></br>
         <label>User Ssn:</label><input type="text" name="ssn" value = "${email.ssn}" /></br>
         <label>User Password:</label><input type="text" name="password" value = "${email.password}" /></br>
@@ -33,7 +35,10 @@
         <label>User Last Name:</label><input type="text" name="lastName" value = "${email.lastname}" /></br>
         <label>User Email:</label><input type="text" name="email" value = "${email.email}" /></br>
         <label>User Address:</label><input type="text" name="address" value = "${email.address}" /></br>
+
+        <input type="submit" value="Update">
     </form>
+
 </#list>
 </#if>
 
