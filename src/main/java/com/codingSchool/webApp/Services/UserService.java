@@ -14,6 +14,8 @@ public interface UserService {
 
     List<User> findBySsn(String ssn);
 
+    List<User> findByEmailOrSsn(String email, String ssn);
+
     List<User> findAll();
 
     void save(User user);
@@ -21,5 +23,7 @@ public interface UserService {
     void insert(User user);
 
     void update(User user);
+
+    void delete(long userid);
 
 }

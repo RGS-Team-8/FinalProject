@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class RepairServiceImpl {
+public class RepairServiceImpl implements RepairService {
 
     @Autowired
     private  RepairRepository repairRepository;

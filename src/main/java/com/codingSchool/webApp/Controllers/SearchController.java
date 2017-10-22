@@ -21,6 +21,9 @@ public class SearchController {
     private static final String SEARCH_FORM = "searchForm";
     public static final String EMAIL_LIST = "emails";
     public static final String SSN_LIST = "ssns";
+    public static final String EMAIL_OR_SSN_LIST = "emailsorssns";
+
+    public List emailList;
 
     @Autowired
     private UserService userService;
@@ -36,29 +39,46 @@ public class SearchController {
                          HttpSession session,
                          RedirectAttributes redirectAttributes) {
 
-        List emailList = userService.findByEmail(searchForm.getEmail());
-        List ssnList = userService.findBySsn(searchForm.getSsn());
+//        List emailList = userService.findByEmail(searchForm.getEmail());
+//        List ssnList = userService.findBySsn(searchForm.getSsn());
+        List emailorssnList = userService.findByEmailOrSsn(searchForm.getEmail(), searchForm.getSsn());
 
-        if(emailList.isEmpty() && ssnList.isEmpty()) {
+        if(emailorssnList.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
             return "redirect:/admin/home";
         }
 
-        redirectAttributes.addFlashAttribute(EMAIL_LIST, emailList);
-        redirectAttributes.addFlashAttribute(SSN_LIST, ssnList);
+//        redirectAttributes.addFlashAttribute(EMAIL_LIST, emailList);
+//        redirectAttributes.addFlashAttribute(SSN_LIST, ssnList);
+        redirectAttributes.addFlashAttribute(EMAIL_OR_SSN_LIST, emailorssnList);
 
         return "redirect:/admin/home";
     }
-//    @RequestMapping(value="/search", method = RequestMethod.POST)
-//    public String update(@ModelAttribute(SEARCH_FORM) SearchForm searchForm,
-//                         BindingResult bindingResult, HttpSession session,
-//                         RedirectAttributes redirectAttributes) {
-//
+
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String update(@ModelAttribute(SEARCH_FORM) SearchForm searchForm,
+                         BindingResult bindingResult, HttpSession session,
+                         RedirectAttributes redirectAttributes) {
+
+        User user = UserUpdater.updateUserObject(searchForm);
+        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>UPDATE User with UserId:" + user.getUserid());
+        userService.update(user);
+        session.setAttribute("username", searchForm.getUserid());
+
+        return "redirect:/admin/home";
+    }
+
+    @RequestMapping(value="/delete", method = RequestMethod.POST)
+    public String delete(@ModelAttribute(SEARCH_FORM) SearchForm searchForm,
+                         BindingResult bindingResult, HttpSession session,
+                         RedirectAttributes redirectAttributes) {
+
 //        User user = UserUpdater.updateUserObject(searchForm);
-//        userService.insert(user);
+        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DELETE User with UserId:" + searchForm.getUserid());
+        userService.delete(searchForm.getUserid());
 //        session.setAttribute("username", searchForm.getUserid());
-//
-//        return "redirect:/admin/home";
-//    }
+
+        return "redirect:/admin/home";
+    }
 
 }

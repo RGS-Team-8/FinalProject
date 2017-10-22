@@ -34,7 +34,7 @@ public class User implements Serializable {
     @Column(nullable = false, name="typeofuser")
     private String typeofuser;
 
-    @OneToMany(mappedBy = "user", targetEntity = Repair.class)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,  orphanRemoval=true, targetEntity = Repair.class)
     private List<Repair> repairs;
 
     public List<Repair> getRepairs() {

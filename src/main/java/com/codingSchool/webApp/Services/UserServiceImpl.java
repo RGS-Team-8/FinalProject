@@ -30,6 +30,11 @@ public class UserServiceImpl implements UserService {
     public List<User> findBySsn(String ssn) { return userRepository.findBySsn(ssn); }
 
     @Override
+    public List<User> findByEmailOrSsn(String email, String ssn) {
+        return userRepository.findByEmailOrSsn(email, ssn);
+    }
+
+    @Override
     public List<User> findAll() { return userRepository.findAll(); }
 
     @Override
@@ -44,5 +49,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user) { userRepository.save(user); }
+
+    @Override
+    public void delete(long userid) { userRepository.delete(userid); }
 
 }

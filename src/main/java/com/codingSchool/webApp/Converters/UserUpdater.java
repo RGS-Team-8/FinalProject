@@ -6,6 +6,7 @@ import com.codingSchool.webApp.Model.SearchForm;
 public class UserUpdater {
     public static User updateUserObject(SearchForm searchForm) {
         User user = new User();
+        user.setUserid(searchForm.getUserid());
         user.setAddress(searchForm.getAddress());
         user.setEmail(searchForm.getEmail());
         user.setFirstname(searchForm.getFirstname());
