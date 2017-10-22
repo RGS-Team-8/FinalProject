@@ -25,13 +25,13 @@ public class InsertController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value ="/admin/home/insert", method = RequestMethod.GET)
+    @RequestMapping(value ="/admin/owner/insert", method = RequestMethod.GET)
     public String insert(Model model) {
         model.addAttribute(INSERT_FORM, new InsertForm());
         return "insert";
     }
 
-    @RequestMapping(value="/admin/home/insert", method = RequestMethod.POST)
+    @RequestMapping(value="/admin/owner/insert", method = RequestMethod.POST)
     public String insert(@Valid @ModelAttribute(INSERT_FORM)
                                      InsertForm insertForm,
                          BindingResult bindingResult, HttpSession session,

@@ -1,11 +1,12 @@
 <html>
 <head>
+    <#include "masteruser.ftl"/>
     <title>Welcome!</title>
     <meta charset="UTF-8">
     <title>User Page</title>
 </head>
 <body>
-
+<@navbaruser.navbaruser tab="user"/>
 <h2>${message!""}</h2>
 <h2>${errorMessage!""}</h2>
 

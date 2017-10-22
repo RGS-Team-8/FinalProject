@@ -1,6 +1,5 @@
 <#import "/spring.ftl" as spring/>
 <body>
-repairList
 <#if repairList??>
 <h3>Retrieved Repairs:</h3>
 <table>
@@ -9,7 +8,7 @@ repairList
             <td> Cost:${repair.cost}</td>
             <td> Datetime: ${repair.datetime}</td>
             <td> Status: ${repair.status}</td>
-            <td> Type: ${repair.type?c}</td>
+            <td> Type: ${repair.type}</td>
         </tr>
     </#list>
 </table>

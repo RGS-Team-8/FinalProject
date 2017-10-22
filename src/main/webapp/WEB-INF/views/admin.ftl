@@ -1,12 +1,13 @@
 <#import "/spring.ftl" as spring/>
 <html>
 <head>
+    <#include "master.ftl"/>
     <title>Welcome!</title>
     <meta charset="UTF-8">
     <title>Admin Page</title>
 </head>
 <body>
-
+<@navigationbar.navigationbar tab="admin"/>
 <h2>${message!""}</h2>
 <h2>${errorMessage!""}</h2>
 
@@ -38,13 +39,11 @@
     <input type="submit" value="Search">
 </form>
 
-<a href="http://localhost:8080/admin/home/insert">Insert</a>
-
 <#if emailsorssns??>
 <h3>Retrieved Users (Search via Email Or Ssn)</h3>
 
 <#list emailsorssns as emailsorssn>
-    <form id="searchForm" name"retrieveUserData" action="/update" method="post">
+    <form id="searchResults" name"retrieveUserData" action="/update" method="post">
         <label>User Id:</label><input type="text" name="userid" value = "${emailsorssn.userid}" /></br>
         <label>User Ssn:</label><input type="text" name="ssn" value = "${emailsorssn.ssn}" /></br>
         <label>User Password:</label><input type="text" name="password" value = "${emailsorssn.password}" /></br>
@@ -72,7 +71,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
         $('#delete').click(function(){
-        $('#searchForm').attr('action', '/delete');
+        $('#searchResults').attr('action', '/delete');
         });
     </script>
 </html>
