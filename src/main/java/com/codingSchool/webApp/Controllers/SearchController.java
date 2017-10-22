@@ -1,8 +1,10 @@
 package com.codingSchool.webApp.Controllers;
 
 import com.codingSchool.webApp.Converters.UserUpdater;
+import com.codingSchool.webApp.Domain.Repair;
 import com.codingSchool.webApp.Domain.User;
 import com.codingSchool.webApp.Model.SearchForm;
+import com.codingSchool.webApp.Model.SearchRepairForm;
 import com.codingSchool.webApp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +21,11 @@ import java.util.List;
 @Controller
 public class SearchController {
     private static final String SEARCH_FORM = "searchForm";
-    public static final String EMAIL_LIST = "emails";
-    public static final String SSN_LIST = "ssns";
+    private static final String SEARCH_REPAIR_FORM = "searchRepairForm";
     public static final String EMAIL_OR_SSN_LIST = "emailsorssns";
+    private String REPAIR_LIST = "repairList";
 
-    public List emailList;
+    Repair repair;
 
     @Autowired
     private UserService userService;
@@ -38,18 +40,11 @@ public class SearchController {
     public String search(@ModelAttribute(SEARCH_FORM) SearchForm searchForm,
                          HttpSession session,
                          RedirectAttributes redirectAttributes) {
-
-//        List emailList = userService.findByEmail(searchForm.getEmail());
-//        List ssnList = userService.findBySsn(searchForm.getSsn());
         List emailorssnList = userService.findByEmailOrSsn(searchForm.getEmail(), searchForm.getSsn());
-
         if(emailorssnList.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
             return "redirect:/admin/home";
         }
-
-//        redirectAttributes.addFlashAttribute(EMAIL_LIST, emailList);
-//        redirectAttributes.addFlashAttribute(SSN_LIST, ssnList);
         redirectAttributes.addFlashAttribute(EMAIL_OR_SSN_LIST, emailorssnList);
 
         return "redirect:/admin/home";
@@ -73,12 +68,27 @@ public class SearchController {
                          BindingResult bindingResult, HttpSession session,
                          RedirectAttributes redirectAttributes) {
 
-//        User user = UserUpdater.updateUserObject(searchForm);
         System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DELETE User with UserId:" + searchForm.getUserid());
         userService.delete(searchForm.getUserid());
-//        session.setAttribute("username", searchForm.getUserid());
-
         return "redirect:/admin/home";
     }
 
+    @RequestMapping(value ="/search2", method = RequestMethod.GET)
+    public String searchRepair(Model model) {
+        model.addAttribute(SEARCH_REPAIR_FORM, new SearchRepairForm());
+        return "admin";
+    }
+
+    @RequestMapping(value="/search2", method = RequestMethod.POST)
+    public String searchRepair(Model model, @ModelAttribute(SEARCH_REPAIR_FORM) SearchRepairForm searchRepairForm,
+                         HttpSession session,
+                         RedirectAttributes redirectAttributes) {
+        List<User> users = userService.findBySsn(searchRepairForm.getSsn());
+        if(users.isEmpty()) {
+            redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
+            return "redirect:/admin/home";
+        }
+        model.addAttribute(REPAIR_LIST,users.get(0).getRepairs());
+        return "showRepairs";
+    }
 }

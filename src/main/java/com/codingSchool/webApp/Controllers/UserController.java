@@ -30,7 +30,7 @@ public class UserController {
         String mail = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
         List<User> users = userService.findByEmail(mail);
         model.addAttribute(REPAIR_LIST,users.get(0).getRepairs());
-        return "showrepairs";
+        return "showRepairs";
     }
 
     private void addUsernameInModel(Model model) {

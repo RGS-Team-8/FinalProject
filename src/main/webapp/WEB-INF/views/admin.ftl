@@ -39,6 +39,12 @@
     <input type="submit" value="Search">
 </form>
 
+
+<form name="searchRepairForm" action="/search2" method="post">
+<label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN"/></br>
+<input type="submit" value="Search">
+</form>
+
 <#if emailsorssns??>
 <h3>Retrieved Users (Search via Email Or Ssn)</h3>
 
