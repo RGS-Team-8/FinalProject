@@ -27,20 +27,11 @@ public class AdminController {
     public String admin(Model model) {
         logger.info("Into the admin page controller");
         model.addAttribute("message", "Hello Admin");
-        model.addAttribute(REPAIR_LIST,repairService.findTop10ByOrderByDatetime());
+        model.addAttribute(REPAIR_LIST, repairService.findTop10ByOrderByDatetime());
         addUsernameInModel(model);
 
         return "admin";
     }
-
-
-//    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
-//    public String admin(Model model) {
-//
-//        return "showrepairs";
-//    }
-//
-
 
     private void addUsernameInModel(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -51,7 +42,5 @@ public class AdminController {
         } else {
             model.addAttribute("errorMessage", "User not logged in anymore!");
         }
-
     }
-
 }

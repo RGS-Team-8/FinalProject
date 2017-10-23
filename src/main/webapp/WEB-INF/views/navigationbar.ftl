@@ -15,15 +15,15 @@
     <div class="collapse navbar-collapse" id="navigationbar">
       <ul class="nav navbar-nav">
       <#if tab == "home">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="">Home</a></li>
        <#else>
-        <li><a href="#">Home</a></li>
+        <li><a href="/admin/home">Home</a></li>
         </#if>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Owner <span class="caret"></span></a>
           <ul class="dropdown-menu">
           <#if tab == "create">
-            <li class="active"><span class="glyphicon glyphicon-user"></span> <a href="href="http://localhost:8080/admin/owner/insert">Create</a></li>
+            <li class="active"><span class="glyphicon glyphicon-user"></span> <a href="#">Create</a></li>
            <#else>
             <li><a href="http://localhost:8080/admin/owner/insert"><span class="glyphicon glyphicon-user"></span> Create</a></li>
            </#if>
@@ -35,7 +35,7 @@
             <#if tab == "search">
               <li class="active"><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
               <#else>
-               <li><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+               <li><a href="http://localhost:8080/admin/owner/search"><span class="glyphicon glyphicon-search"></span> Search</a></li>
             </#if>
           </ul>
         </li>
