@@ -3,7 +3,7 @@
 
 <head>
   <#include "master.ftl"/>
-  <title>Insert Page</title>
+  <title>Insert Owner Page</title>
   <meta charset="UTF-8">
 </head>
 

@@ -10,4 +10,6 @@ public interface RepairService{
     void save(Repair repair);
 
     List<Repair> findTop10ByOrderByDatetime();
+
+    void insert(Repair repair);
 }

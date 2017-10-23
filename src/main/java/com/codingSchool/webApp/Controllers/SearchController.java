@@ -1,8 +1,10 @@
 package com.codingSchool.webApp.Controllers;
 
 import com.codingSchool.webApp.Converters.UserUpdater;
+import com.codingSchool.webApp.Domain.Repair;
 import com.codingSchool.webApp.Domain.User;
 import com.codingSchool.webApp.Model.SearchForm;
+import com.codingSchool.webApp.Model.SearchRepairForm;
 import com.codingSchool.webApp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,11 @@ import java.util.List;
 @Controller
 public class SearchController {
     private static final String SEARCH_FORM = "searchForm";
+    private static final String SEARCH_REPAIR_FORM = "searchRepairForm";
     public static final String EMAIL_OR_SSN_LIST = "emailsorssns";
+    public static final String REPAIR_LIST = "repairList";
+
+    Repair repair;
 
     @Autowired
     private UserService userService;
@@ -36,14 +42,14 @@ public class SearchController {
                          RedirectAttributes redirectAttributes) {
 
         List emailorssnList = userService.findByEmailOrSsn(searchForm.getEmail(), searchForm.getSsn());
-
         if(emailorssnList.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
-
             return "redirect:search";
         }
 
+        System.err.println("Retrieve SSN from Search Form (Owner)");
         redirectAttributes.addFlashAttribute(EMAIL_OR_SSN_LIST, emailorssnList);
+        System.err.println(emailorssnList);
 
         return "redirect:search";
     }
@@ -72,4 +78,30 @@ public class SearchController {
         return "redirect:search";
     }
 
+
+
+
+    @RequestMapping(value ="/admin/repair/searchRepair", method = RequestMethod.GET)
+    public String searchRepair(Model model) {
+        model.addAttribute(SEARCH_REPAIR_FORM, new SearchRepairForm());
+        return "searchRepair";
+    }
+
+    @RequestMapping(value="/admin/repair/searchRepair", method = RequestMethod.POST)
+    public String searchRepair(Model model, @ModelAttribute(SEARCH_REPAIR_FORM) SearchRepairForm searchRepairForm,
+                         HttpSession session,
+                         RedirectAttributes redirectAttributes) {
+        List<User> users = userService.findBySsn(searchRepairForm.getSsn());
+        if(users.isEmpty()) {
+            redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
+            return "redirect:searchRepair";
+        }
+//        redirectAttributes.addFlashAttribute(EMAIL_OR_SSN_LIST, emailorssnList);
+        System.err.println("Retrieve SSN from Search Form (Repairs)");
+        model.addAttribute(REPAIR_LIST, users.get(0).getRepairs());
+        System.err.println(users.get(0).getRepairs());
+        redirectAttributes.addFlashAttribute(REPAIR_LIST, users.get(0).getRepairs());
+        System.err.println(REPAIR_LIST);
+        return "redirect:searchRepair";
+    }
 }

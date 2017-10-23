@@ -29,7 +29,8 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String mail = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
         List<User> users = userService.findByEmail(mail);
-        model.addAttribute(REPAIR_LIST,users.get(0).getRepairs());
+        System.err.println("Repairs for user " + users.get(0).getUserid());
+        model.addAttribute(REPAIR_LIST, users.get(0).getRepairs());
         return "user";
     }
 

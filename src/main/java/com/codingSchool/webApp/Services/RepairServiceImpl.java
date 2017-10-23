@@ -37,4 +37,9 @@ public class RepairServiceImpl implements RepairService {
             r2.add(repair);
         return r2;
     }
+
+    @Override
+    public void insert(Repair repair) {
+        repairRepository.save(repair);
+    }
 }

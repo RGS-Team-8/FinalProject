@@ -4,7 +4,7 @@
 <head>
   <#include "master.ftl"/>
   <meta charset="UTF-8">
-  <title>Search Page</title>
+  <title>Search Owner Page</title>
 </head>
 
 <body>

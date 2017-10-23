@@ -45,7 +45,7 @@
                     <#if tab == "create">
                        <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Create</a></li>
                   <#else>
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Create</a></li>
+                    <li><a href="http://localhost:8080/admin/repair/insertRepair"><span class="glyphicon glyphicon-user"></span> Create</a></li>
                   </#if>
                   <#if tab == "edit">
                       <li class="active"><span class="glyphicon glyphicon-pencil"></span> <a href="#">Edit</a></li>
@@ -55,7 +55,7 @@
                   <#if tab == "search">
                       <li class="active"><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
                   <#else>
-                      <li><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+                      <li><a href="http://localhost:8080/admin/repair/searchRepair"><span class="glyphicon glyphicon-search"></span> Search</a></li>
                   </#if>
               </ul>
             </li>
