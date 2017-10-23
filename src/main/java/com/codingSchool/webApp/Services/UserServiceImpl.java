@@ -5,7 +5,6 @@ import com.codingSchool.webApp.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -52,5 +51,4 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(long userid) { userRepository.delete(userid); }
-
 }

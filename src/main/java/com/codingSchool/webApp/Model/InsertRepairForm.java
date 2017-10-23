@@ -1,19 +1,14 @@
 package com.codingSchool.webApp.Model;
 
-import com.codingSchool.webApp.Domain.User;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 public class InsertRepairForm {
 
-//    private static final String COST_PATTERN = "^[0-9]*$";
-
     private Long serviceid;
 
     @NotNull(message = "{insert.cost.null}")
-//    @Pattern(regexp = COST_PATTERN, message = "{insert.cost.invalid}")
     private double cost;
 
     @NotNull(message = "{insert.date.null}")

@@ -48,7 +48,6 @@ public class InsertForm {
         return userid;
     }
 
-
     public String getSsn() {
         return ssn;
     }

@@ -13,6 +13,7 @@ public class UserConverter {
         user.setSsn(insertForm.getSsn());
         user.setPassword(insertForm.getPassword());
         user.setTypeofuser(insertForm.getTypeofuser());
+
         return user;
     }
 }

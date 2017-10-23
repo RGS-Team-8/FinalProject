@@ -22,7 +22,8 @@
     <h3>Retrieved Users (Search via Email Or Ssn)</h3>
 
     <#list emailsorssns as emailsorssn>
-      <form id="searchResults" name "retrieveUserData" action="update" method="post">
+      <form id="searchResults" name="retrieveUserData" action="update" method="post">
+
         <label>User Id:</label><input type="text" name="userid" value="${emailsorssn.userid}" /></br>
         <label>User Ssn:</label><input type="text" name="ssn" value="${emailsorssn.ssn}" /></br>
         <label>User Password:</label><input type="text" name="password" value="${emailsorssn.password}" /></br>

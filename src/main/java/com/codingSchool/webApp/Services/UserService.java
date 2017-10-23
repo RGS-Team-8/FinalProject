@@ -2,9 +2,7 @@ package com.codingSchool.webApp.Services;
 
 import com.codingSchool.webApp.Domain.User;
 import org.springframework.security.core.AuthenticationException;
-
 import java.util.List;
-
 
 public interface UserService {
 
@@ -25,5 +23,4 @@ public interface UserService {
     void update(User user);
 
     void delete(long userid);
-
 }

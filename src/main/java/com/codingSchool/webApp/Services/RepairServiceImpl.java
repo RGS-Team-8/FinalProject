@@ -24,6 +24,7 @@ public class RepairServiceImpl implements RepairService {
         for (Repair repair:repairRepository.findAll()){
             r1.add(repair);
         }
+
         return r1;
     }
 
@@ -35,6 +36,7 @@ public class RepairServiceImpl implements RepairService {
         List<Repair> r2=new ArrayList<>();
         for(Repair repair:repairRepository.findTop10ByOrderByDatetime())
             r2.add(repair);
+
         return r2;
     }
 
@@ -42,4 +44,7 @@ public class RepairServiceImpl implements RepairService {
     public void insert(Repair repair) {
         repairRepository.save(repair);
     }
+
+    @Override
+    public void update(Repair repair) { repairRepository.save(repair); }
 }

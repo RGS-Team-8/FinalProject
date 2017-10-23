@@ -1,6 +1,5 @@
 package com.codingSchool.webApp.Controllers;
 
-import com.codingSchool.webApp.Domain.Repair;
 import com.codingSchool.webApp.Domain.User;
 import com.codingSchool.webApp.Services.UserService;
 import org.slf4j.LoggerFactory;
@@ -31,6 +30,7 @@ public class UserController {
         List<User> users = userService.findByEmail(mail);
         System.err.println("Repairs for user " + users.get(0).getUserid());
         model.addAttribute(REPAIR_LIST, users.get(0).getRepairs());
+
         return "user";
     }
 

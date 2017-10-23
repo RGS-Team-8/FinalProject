@@ -1,10 +1,12 @@
 package com.codingSchool.webApp.Controllers;
 
+import com.codingSchool.webApp.Converters.RepairUpdater;
 import com.codingSchool.webApp.Converters.UserUpdater;
 import com.codingSchool.webApp.Domain.Repair;
 import com.codingSchool.webApp.Domain.User;
 import com.codingSchool.webApp.Model.SearchForm;
 import com.codingSchool.webApp.Model.SearchRepairForm;
+import com.codingSchool.webApp.Services.RepairService;
 import com.codingSchool.webApp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -25,14 +26,16 @@ public class SearchController {
     public static final String EMAIL_OR_SSN_LIST = "emailsorssns";
     public static final String REPAIR_LIST = "repairList";
 
-    Repair repair;
-
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RepairService repairService;
 
     @RequestMapping(value ="/admin/owner/search", method = RequestMethod.GET)
     public String login(Model model) {
         model.addAttribute(SEARCH_FORM, new SearchForm());
+
         return "search";
     }
 
@@ -44,6 +47,7 @@ public class SearchController {
         List emailorssnList = userService.findByEmailOrSsn(searchForm.getEmail(), searchForm.getSsn());
         if(emailorssnList.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
+
             return "redirect:search";
         }
 
@@ -60,7 +64,7 @@ public class SearchController {
                          RedirectAttributes redirectAttributes) {
 
         User user = UserUpdater.updateUserObject(searchForm);
-        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>UPDATE User with UserId:" + user.getUserid());
+        System.err.println("UPDATE: User with UserId:" + user.getUserid());
         userService.update(user);
         session.setAttribute("username", searchForm.getUserid());
 
@@ -72,18 +76,18 @@ public class SearchController {
                          BindingResult bindingResult, HttpSession session,
                          RedirectAttributes redirectAttributes) {
 
-        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DELETE User with UserId:" + searchForm.getUserid());
+        System.err.println("DELETE: User with UserId:" + searchForm.getUserid());
         userService.delete(searchForm.getUserid());
 
         return "redirect:search";
     }
 
-
-
+    //=============== R E P A I R
 
     @RequestMapping(value ="/admin/repair/searchRepair", method = RequestMethod.GET)
     public String searchRepair(Model model) {
         model.addAttribute(SEARCH_REPAIR_FORM, new SearchRepairForm());
+
         return "searchRepair";
     }
 
@@ -94,14 +98,28 @@ public class SearchController {
         List<User> users = userService.findBySsn(searchRepairForm.getSsn());
         if(users.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
+
             return "redirect:searchRepair";
         }
-//        redirectAttributes.addFlashAttribute(EMAIL_OR_SSN_LIST, emailorssnList);
-        System.err.println("Retrieve SSN from Search Form (Repairs)");
+
+        System.err.println("SEARCH: Repair search via SSN");
         model.addAttribute(REPAIR_LIST, users.get(0).getRepairs());
         System.err.println(users.get(0).getRepairs());
         redirectAttributes.addFlashAttribute(REPAIR_LIST, users.get(0).getRepairs());
-        System.err.println(REPAIR_LIST);
+
         return "redirect:searchRepair";
     }
+
+    @RequestMapping(value="/admin/repair/updateRepair", method = RequestMethod.POST)
+    public String updateRepair(@ModelAttribute(SEARCH_REPAIR_FORM) SearchRepairForm searchRepairForm,
+                         BindingResult bindingResult, HttpSession session,
+                         RedirectAttributes redirectAttributes) {
+
+        Repair repair = RepairUpdater.updateRepairObject(searchRepairForm);
+        System.err.println("UPDATE: Repair belongs to user with UserId: " + repair.getServiceid());
+        repairService.update(repair);
+
+        return "redirect:searchRepair";
+    }
+
 }

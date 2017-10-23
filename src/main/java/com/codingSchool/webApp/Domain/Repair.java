@@ -2,9 +2,7 @@ package com.codingSchool.webApp.Domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 import javax.persistence.*;
-
 
 @Entity
 @Table (name="service")

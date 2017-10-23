@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class InsertController {
@@ -36,6 +35,7 @@ public class InsertController {
     @RequestMapping(value ="/admin/owner/insert", method = RequestMethod.GET)
     public String insert(Model model) {
         model.addAttribute(INSERT_FORM, new InsertForm());
+
         return "insert";
     }
 
@@ -46,6 +46,7 @@ public class InsertController {
                          RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             logger.error(String.format("%s Validation Errors present: ", bindingResult.getErrorCount()));
+
             return "insert";
         }
 
@@ -57,9 +58,11 @@ public class InsertController {
         } catch (Exception exception) {
             redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
             logger.error("User registration failed: " + exception);
+
             return "/insert";
         }
         redirectAttributes.addFlashAttribute("message", "You have sucessfully completed registration");
+
         return "/insert";
     }
 
@@ -68,6 +71,7 @@ public class InsertController {
     @RequestMapping(value ="/admin/repair/insertRepair", method = RequestMethod.GET)
     public String insertRepair(Model model) {
         model.addAttribute(INSERT_REPAIR_FORM, new InsertForm());
+
         return "insertRepair";
     }
 
@@ -78,21 +82,22 @@ public class InsertController {
                                RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             logger.error(String.format("%s Validation Errors present: ", bindingResult.getErrorCount()));
+
             return "insertRepair";
         }
 
         try {
             Repair repair = RepairConverter.buildRepairObject(insertRepairForm);
             repairService.insert(repair);
-//            session.setAttribute("username", insertRepairForm.getUserid());
 
         } catch (Exception exception) {
             redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
             logger.error("Repair registration failed: " + exception);
+
             return "/insertRepair";
         }
         redirectAttributes.addFlashAttribute("message", "You have sucessfully completed registration");
+
         return "/insertRepair";
     }
-
 }

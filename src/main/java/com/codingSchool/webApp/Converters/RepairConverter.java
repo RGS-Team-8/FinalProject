@@ -12,12 +12,10 @@ public class RepairConverter {
         repair.setStatus(insertRepairForm.getStatus());
         repair.setType(insertRepairForm.getType());
         repair.setFreetext(insertRepairForm.getFreetext());
-
         User user = new User();
         user.setUserid(insertRepairForm.getUserid());
-
-
         repair.setUser(user);
+
         return repair;
     }
 }

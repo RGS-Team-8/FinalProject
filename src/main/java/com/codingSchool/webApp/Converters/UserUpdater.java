@@ -14,6 +14,7 @@ public class UserUpdater {
         user.setSsn(searchForm.getSsn());
         user.setPassword(searchForm.getPassword());
         user.setTypeofuser(searchForm.getTypeofuser());
+
         return user;
     }
 }
