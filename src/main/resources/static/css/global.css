@@ -1,0 +1,12 @@
+
+
+body {
+    background-image:url('/img/audi.png') no-repeat center top scroll;
+      background-size: 100% auto;
+}
+
+.form-conatiner{border:1px solid #fff; padding:50px 60px; margin-top:4vh;
+-webkit-box-shadow: 1px 3px 44px 8px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 3px 44px 8px rgba(0,0,0,0.75);
+box-shadow: 1px 3px 44px 8px rgba(0,0,0,0.75);
+}

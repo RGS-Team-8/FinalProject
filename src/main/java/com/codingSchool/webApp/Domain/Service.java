@@ -22,7 +22,7 @@ public class Service implements Serializable {
     private String status;
 
     @Column(nullable = false, name = "type")
-    private boolean type;
+    private String type;
 
     @Column(nullable = false, name = "freetext")
     private String freetext;
@@ -34,7 +34,7 @@ public class Service implements Serializable {
     public Service() {
     }
 
-    public Service(Long serviceid, double cost, String datetime, String status, boolean type, String freetext, User user) {
+    public Service(Long serviceid, double cost, String datetime, String status, String type, String freetext, User user) {
         this.serviceid = serviceid;
         this.cost = cost;
         this.datetime = datetime;
@@ -51,7 +51,7 @@ public class Service implements Serializable {
     public void setServiceid(Long serviceid) {
         this.serviceid = serviceid;
     }
-
+git
     public double getCost() {
         return cost;
     }
@@ -76,11 +76,11 @@ public class Service implements Serializable {
         this.status = status;
     }
 
-    public boolean isType() {
+    public String isType() {
         return type;
     }
 
-    public void setType(boolean type) {
+    public void setType(String type) {
         this.type = type;
     }
 

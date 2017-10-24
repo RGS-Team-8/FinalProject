@@ -3,32 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign-Up/Login Form</title>
-    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="static/style.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+   <style>
+      *{
+          margin:0;
+          padding:0;
 
+      }
+         body {
+
+                 background-image:url('/img/audi.png');
+                 background-repeat: no-repeat;
+                 background-position: center;
+                 background-size: cover;
+                 width: 100%;
+                 height: 100%;
+
+
+         }
+
+
+      .form-conatiner{border:1px solid #fff; padding:50px 60px; margin-top:4vh;
+                       -webkit-box-shadow: 1px 3px 44px 8px rgba(0,0,0,0.75);
+                       -moz-box-shadow: 1px 3px 44px 8px rgba(0,0,0,0.75);
+                       box-shadow: 1px 3px 44px 8px rgba(0,0,0,0.75);
+      }
+
+   </style>
+
+   <link rel="stylesheet" type="text/css" href= "/css/global.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
 </head>
 
-<body>
+<body >
 
-<h2>${message!""}</h2>
+<h2">${message!""}</h2>
 <h2 style="color: red">${errorMessage!""}</h2>
 
-<div class="form">
-    <form action="/login" method="post" id="loginForm" name="loginForm">
-        <label for="email">email</label>
-        <input type="text" name="email" id="email" placeholder="email" omplete="off"/>
+<div class="container-fluid" >
 
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="password"/>
+	  <div class="row">
+	    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+	    <div class="col-md-4 col-sm-4 col-xs-12">
 
-        <button type="submit">Login</button>
-    </form>
+      <div class="form">
+         <form action="/login" method="post" id="loginForm" name="loginForm" class="form-conatiner">
+         <h1><span style="color:white">LOGIN</span></h1>
+             <div class="form-group">
+             <label></label>
+
+           <div class="input-group">
+              <input type="email" class="form-control" name ="email" id="email" placeholder="Email" autocomplete="on"/>
+               <div class="input-group-addon">
+                     <span class="glyphicon glyphicon-envelope"></span>
+                 </div>
+           </div>
+               </div>
+
+           <div class="form-group">
+		   <label></label>
+             <div class="input-group">
+               <input type="password" class="form-control" name="password" id="password" placeholder="Password"/>
+            <div class="input-group-addon">
+                   <span class="glyphicon glyphicon-lock"></span>
+             </div>
+            </div>
+            </div>
+
+           <div class="form-group">
+		   <label></label>
+		   </div>
+                <button type="submit" class="btn btn-success btn-block">Submit</button>
+         </form>
+      </div>
+     </div>
+      <div class="col-md-4 col-sm-4 col-xs-12"></div>
+     </div>
 </div>
+
 
 </body>
