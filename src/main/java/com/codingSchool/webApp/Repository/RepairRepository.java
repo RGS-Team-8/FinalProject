@@ -21,5 +21,10 @@ public interface RepairRepository extends CrudRepository<Repair,Long> {
 
     List<Repair> findTop10ByOrderByDatetime();
 
+
     List<Repair> findByDatetimeBetween(LocalDateTime datetime, LocalDateTime datetime2);
+
+    List<Repair> findTop10ByStatusOrderByDatetime(String status);
+
+//    List<Repair> findByStatusContaining(String Pending);
 }

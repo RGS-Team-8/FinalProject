@@ -17,9 +17,6 @@ public class RepairServiceImpl implements RepairService {
     @Autowired
     private  RepairRepository repairRepository;
 
-    public RepairServiceImpl(RepairRepository repairRepository){
-        this.repairRepository=repairRepository;
-    }
 
     public List<Repair> findAll(){
         List<Repair> r1= new ArrayList<>();
@@ -34,12 +31,24 @@ public class RepairServiceImpl implements RepairService {
         repairRepository.save(repair);
     }
 
-    public List<Repair> findTop10ByOrderByDatetime(){
+    @Override
+    public List<Repair>  findTop10ByOrderByDatetime(){
         List<Repair> r2=new ArrayList<>();
         for(Repair repair:repairRepository.findTop10ByOrderByDatetime())
             r2.add(repair);
 
         return r2;
+    }
+
+
+    public  List<Repair> findTop10ByStatusOrderByDatetime(String status){
+    List<Repair> r3=new ArrayList<>();
+        for(Repair repair:repairRepository.findTop10ByStatusOrderByDatetime(status))
+
+    {
+        r3.add(repair);
+    }
+        return r3;
     }
 
     @Override

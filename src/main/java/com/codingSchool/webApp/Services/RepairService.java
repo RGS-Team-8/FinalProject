@@ -2,7 +2,6 @@ package com.codingSchool.webApp.Services;
 
 import com.codingSchool.webApp.Domain.Repair;
 import com.codingSchool.webApp.Domain.User;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,6 +13,8 @@ public interface RepairService{
 
     List<Repair> findTop10ByOrderByDatetime();
 
+    //List<Repair> findTop10ByOrderByDatetime();
+
     List<Repair> findByDatetime(LocalDateTime datetime);
 
     List<Repair> findByDatetimeBetween(LocalDateTime datetime, LocalDateTime datetime2);
@@ -23,4 +24,7 @@ public interface RepairService{
     void update(Repair repair);
 
     void delete(long serviceid);
+
+    List<Repair> findTop10ByStatusOrderByDatetime(String status);
+
 }
