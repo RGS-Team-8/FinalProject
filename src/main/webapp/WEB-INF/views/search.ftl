@@ -14,7 +14,6 @@
     <label>Search by Email:</label><input type="text" name="email" placeholder="Email" /></br>
     <label>Search by SSN:</label><input id="searchUserBar" type="text" name="ssn" placeholder="SSN" /></br>
 
-
     <input id="search" type="submit" value="Search">
   </form>
 

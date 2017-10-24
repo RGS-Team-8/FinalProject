@@ -96,16 +96,23 @@ public class SearchController {
                          HttpSession session,
                          RedirectAttributes redirectAttributes) {
         List<User> users = userService.findBySsn(searchRepairForm.getSsn());
-        if(users.isEmpty()) {
+        List<Repair> repairs = repairService.findByDatetime(searchRepairForm.getDatetime());
+        if(users.isEmpty() && repairs.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
 
             return "redirect:searchRepair";
         }
+        if(!users.isEmpty()) {
+            System.err.println("SEARCH: Repair search via SSN");
+            model.addAttribute(REPAIR_LIST, users.get(0).getRepairs());
+            System.err.println(users.get(0).getRepairs());
+            redirectAttributes.addFlashAttribute(REPAIR_LIST, users.get(0).getRepairs());
 
-        System.err.println("SEARCH: Repair search via SSN");
-        model.addAttribute(REPAIR_LIST, users.get(0).getRepairs());
-        System.err.println(users.get(0).getRepairs());
-        redirectAttributes.addFlashAttribute(REPAIR_LIST, users.get(0).getRepairs());
+            return "redirect:searchRepair";
+        }
+
+        System.err.println("SEARCH: Repair search via Datetime");
+        redirectAttributes.addFlashAttribute(REPAIR_LIST, repairs);
 
         return "redirect:searchRepair";
     }
@@ -117,7 +124,6 @@ public class SearchController {
         Repair repair = RepairUpdater.updateRepairObject(searchRepairForm);
         System.err.println("UPDATE: Repair belongs to user with UserId: " + repair.getServiceid());
         repairService.update(repair);
-
 
         return "redirect:searchRepair";
     }

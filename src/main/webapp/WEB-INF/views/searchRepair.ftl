@@ -11,9 +11,9 @@
   <@navigationbar.navigationbar tab="admin" />
 
   <form name="searchRepairForm" action="searchRepair" method="post">
-    <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN" /></br>
-
-    <input type="submit" value="Search">
+      <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN" /></br>
+      <label>Search by Datetime:</label><input type="datetime-local" name="datetime" placeholder="Datetime" /></br>
+      <input type="submit" value="Search">
   </form>
 
   <#if repairList??>
