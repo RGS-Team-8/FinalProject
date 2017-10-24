@@ -2,9 +2,7 @@ package com.codingSchool.webApp.Domain;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.*;
-
 
 @Entity
 @Table (name="user")
@@ -14,7 +12,7 @@ public class User implements Serializable {
     private Long userid;
 
     @Column(nullable = false, name="ssn", unique = true)
-    private int ssn;
+    private String ssn;
 
     @Column(nullable = false, name="password")
     private String password;
@@ -34,21 +32,21 @@ public class User implements Serializable {
     @Column(nullable = false, name="typeofuser")
     private String typeofuser;
 
-    @OneToMany(mappedBy = "user", targetEntity = Service.class)
-    private List<Service> services;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE}, targetEntity = Repair.class)
+    private List<Repair> repairs;
 
-    public List<Service> getServices() {
-        return services;
+    public List<Repair> getRepairs() {
+        return repairs;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setRepairs(List<Repair> repairs) {
+        this.repairs = repairs;
     }
 
     public User() {
     }
 
-    public User(Long userid, int ssn, String password, String firstname, String lastname, String email, String address, String typeofuser) {
+    public User(Long userid, String ssn, String password, String firstname, String lastname, String email, String address, String typeofuser) {
         this.userid = userid;
         this.ssn = ssn;
         this.password = password;
@@ -67,11 +65,11 @@ public class User implements Serializable {
         this.userid = userid;
     }
 
-    public int getSsn() {
+    public String getSsn() {
         return ssn;
     }
 
-    public void setSsn(int ssn) {
+    public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
@@ -121,5 +119,9 @@ public class User implements Serializable {
 
     public void setTypeofuser(String typeofuser) {
         this.typeofuser = typeofuser;
+    }
+
+    public String getTypeofuser() {
+        return typeofuser;
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,8 +24,8 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 
         String email = authentication.getName();
         String password = (String) authentication.getCredentials();
-        User user = userService.loadUserByEmailAndPassword(email, password);
 
+        User user = userService.loadUserByEmailAndPassword(email, password);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         if (user.isTypeofuser().equals("ADMIN")) {
             grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
@@ -37,11 +36,13 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 
         Authentication auth = new UsernamePasswordAuthenticationToken(email, password, grantedAuthorities);
         System.out.println(user.getFirstname());
+
         return auth;
     }
 
     @Override
     public boolean supports(Class<? extends Object> authentication) {
+
         return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
     }
 }

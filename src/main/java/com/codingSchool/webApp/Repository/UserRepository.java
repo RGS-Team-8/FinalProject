@@ -1,16 +1,26 @@
 package com.codingSchool.webApp.Repository;
 
 import com.codingSchool.webApp.Domain.User;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
-//    @Query("FROM user WHERE email = :email AND password = :password")
-//    User findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
         User findByEmailAndPassword(String email, String password);
 
+        List<User> findByEmail(String email);
+
+        List<User> findBySsn(String ssn);
+
+        List<User> findByEmailOrSsn(String email, String ssn);
+
+        List<User> findAll();
+
+        User save(User user);
+
+        User delete(long userid);
 }

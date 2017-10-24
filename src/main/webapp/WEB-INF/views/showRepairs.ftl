@@ -1,14 +1,5 @@
 <#import "/spring.ftl" as spring/>
-<html>
-<head>
-    <#include "masteruser.ftl"/>
-    <title>Welcome!</title>
-    <meta charset="UTF-8">
-    <title>User Page</title>
-</head>
 <body>
-<@navbaruser.navbaruser tab="user"/>
-
 <#if repairList??>
 <h3>Retrieved Repairs:</h3>
 <table>
@@ -24,6 +15,4 @@
 <#else>
 <h2> No repairs found </h2>
 </#if>
-
 </body>
-</html>
