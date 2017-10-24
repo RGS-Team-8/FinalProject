@@ -63,4 +63,14 @@ public class RepairServiceImpl implements RepairService {
         return r2;
     }
 
+    @Override
+    public List<Repair> findByDatetimeBetween(LocalDateTime datetime, LocalDateTime datetime2) {
+        List<Repair> r2=new ArrayList<>();
+        for(Repair repair:repairRepository.findByDatetimeBetween(datetime, datetime2))
+            r2.add(repair);
+
+        return r2;
+    }
+
+
 }

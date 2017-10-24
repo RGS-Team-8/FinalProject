@@ -97,23 +97,30 @@ public class SearchController {
                          RedirectAttributes redirectAttributes) {
         List<User> users = userService.findBySsn(searchRepairForm.getSsn());
         List<Repair> repairs = repairService.findByDatetime(searchRepairForm.getDatetime());
-        if(users.isEmpty() && repairs.isEmpty()) {
+        List<Repair> repairs2 = repairService.findByDatetimeBetween(searchRepairForm.getDatetime(), searchRepairForm.getDatetime());
+
+        if(users.isEmpty() && repairs.isEmpty() && repairs2.isEmpty()) {
+        //if(users.isEmpty() && repairs.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
 
             return "redirect:searchRepair";
         }
+
         if(!users.isEmpty()) {
             System.err.println("SEARCH: Repair search via SSN");
             model.addAttribute(REPAIR_LIST, users.get(0).getRepairs());
             System.err.println(users.get(0).getRepairs());
             redirectAttributes.addFlashAttribute(REPAIR_LIST, users.get(0).getRepairs());
+            return "redirect:searchRepair";
 
+        }else if(!repairs.isEmpty()){
+            System.err.println("SEARCH: Repair search via Datetime");
+            redirectAttributes.addFlashAttribute(REPAIR_LIST, repairs);
             return "redirect:searchRepair";
         }
 
         System.err.println("SEARCH: Repair search via Datetime");
-        redirectAttributes.addFlashAttribute(REPAIR_LIST, repairs);
-
+        redirectAttributes.addFlashAttribute(REPAIR_LIST, repairs2);
         return "redirect:searchRepair";
     }
 

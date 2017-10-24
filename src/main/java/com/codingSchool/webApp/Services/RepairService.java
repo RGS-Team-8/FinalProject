@@ -16,6 +16,8 @@ public interface RepairService{
 
     List<Repair> findByDatetime(LocalDateTime datetime);
 
+    List<Repair> findByDatetimeBetween(LocalDateTime datetime, LocalDateTime datetime2);
+
     void insert(Repair repair);
 
     void update(Repair repair);

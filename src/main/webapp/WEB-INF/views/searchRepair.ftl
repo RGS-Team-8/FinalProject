@@ -13,6 +13,9 @@
   <form name="searchRepairForm" action="searchRepair" method="post">
       <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN" /></br>
       <label>Search by Datetime:</label><input type="datetime-local" name="datetime" placeholder="Datetime" /></br>
+      <label>Search by Range of Datetime:</label>
+      <input type="datetime-local" name="datetime" placeholder="Datetime" />
+      <input type="datetime-local" name="datetime" placeholder="Datetime" /></br>
       <input type="submit" value="Search">
   </form>
 

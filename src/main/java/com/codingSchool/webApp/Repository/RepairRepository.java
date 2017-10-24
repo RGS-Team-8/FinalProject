@@ -20,4 +20,6 @@ public interface RepairRepository extends CrudRepository<Repair,Long> {
     List<Repair> findByDatetime(LocalDateTime datetime);
 
     List<Repair> findTop10ByOrderByDatetime();
+
+    List<Repair> findByDatetimeBetween(LocalDateTime datetime, LocalDateTime datetime2);
 }
