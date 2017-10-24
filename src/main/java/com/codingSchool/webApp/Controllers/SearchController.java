@@ -114,10 +114,10 @@ public class SearchController {
     public String updateRepair(@ModelAttribute(SEARCH_REPAIR_FORM) SearchRepairForm searchRepairForm,
                          BindingResult bindingResult, HttpSession session,
                          RedirectAttributes redirectAttributes) {
-
         Repair repair = RepairUpdater.updateRepairObject(searchRepairForm);
         System.err.println("UPDATE: Repair belongs to user with UserId: " + repair.getServiceid());
         repairService.update(repair);
+
 
         return "redirect:searchRepair";
     }

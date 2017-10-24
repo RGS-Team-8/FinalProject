@@ -1,6 +1,8 @@
 package com.codingSchool.webApp.Model;
 
 import com.codingSchool.webApp.Domain.User;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -20,6 +22,7 @@ public class SearchRepairForm {
 
     private double cost;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime datetime;
 
     private String status;
