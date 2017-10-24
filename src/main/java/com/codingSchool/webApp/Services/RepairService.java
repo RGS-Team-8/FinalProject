@@ -14,4 +14,6 @@ public interface RepairService{
     void insert(Repair repair);
 
     void update(Repair repair);
+
+    void delete(long serviceid);
 }

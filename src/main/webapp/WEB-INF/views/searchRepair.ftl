@@ -46,8 +46,8 @@
         <label>Repair Description:</label><input type="text" name="freetext" value="${repair.freetext}" /><br/>
         <label>Repair Owner:</label><input type="text" name="userid" value="${repair.user.userid}" /><br/>
 
-        <input type="submit" value="Update">
-        <input type="submit" value="Delete">
+        <input id="update" type="submit" value="Update">
+        <input id="delete" type="submit" value="Delete">
       </form>
       </#list>
   </#if>

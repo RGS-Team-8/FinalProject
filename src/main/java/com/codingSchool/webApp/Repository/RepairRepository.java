@@ -12,5 +12,7 @@ public interface RepairRepository extends CrudRepository<Repair,Long> {
 
     Repair save(Repair repair);
 
+    Repair delete(long serviceid);
+
     List<Repair> findTop10ByOrderByDatetime();
 }

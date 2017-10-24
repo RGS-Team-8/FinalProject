@@ -47,4 +47,7 @@ public class RepairServiceImpl implements RepairService {
 
     @Override
     public void update(Repair repair) { repairRepository.save(repair); }
+
+    @Override
+    public void delete(long serviceid) { repairRepository.delete(serviceid); }
 }

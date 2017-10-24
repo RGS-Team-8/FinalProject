@@ -12,10 +12,10 @@
 
   <form name="searchForm" action="search" method="post">
     <label>Search by Email:</label><input type="text" name="email" placeholder="Email" /></br>
-    <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN" /></br>
-    <label>Search by Email Or SSN:</label><input type="text" name="emailsorssn" placeholder="Email or SSN" /></br>
+    <label>Search by SSN:</label><input id="searchUserBar" type="text" name="ssn" placeholder="SSN" /></br>
 
-    <input type="submit" value="Search">
+
+    <input id="search" type="submit" value="Search">
   </form>
 
   <#if emailsorssns??>
@@ -42,6 +42,12 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $('#search').click(function() {
+    if ($('#searchUserBar').val().indexOf('@') >=0) {
+    $('#searchUserBar').attr('name', 'email'); }
+  });
+</script>
 <script type="text/javascript">
   $('#delete').click(function() {
     $('#searchResults').attr('action', 'delete');

@@ -122,4 +122,15 @@ public class SearchController {
         return "redirect:searchRepair";
     }
 
+    @RequestMapping(value="/admin/repair/deleteRepair", method = RequestMethod.POST)
+    public String delete(@ModelAttribute(SEARCH_REPAIR_FORM) SearchRepairForm searchRepairForm,
+                         BindingResult bindingResult, HttpSession session,
+                         RedirectAttributes redirectAttributes) {
+
+        System.err.println("DELETE: Repair belongs to user with UserId: " + searchRepairForm.getUserid());
+        repairService.delete(searchRepairForm.getServiceid());
+
+        return "redirect:searchRepair";
+    }
+
 }
