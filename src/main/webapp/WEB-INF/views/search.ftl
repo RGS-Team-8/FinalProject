@@ -13,8 +13,6 @@
   <form name="searchForm" action="search" method="post">
     <label>Search by Email:</label><input type="text" name="email" placeholder="Email" /></br>
     <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN" /></br>
-    <label>Search by Email Or SSN:</label><input type="text" name="emailsorssn" placeholder="Email or SSN" /></br>
-
     <input type="submit" value="Search">
   </form>
 
