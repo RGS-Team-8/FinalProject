@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 @Transactional
@@ -40,7 +43,18 @@ public class RepairServiceImpl implements RepairService {
         return r2;
     }
 
+    public List<Repair> findByDatetimeAfterAndDatetimeBefore(LocalDateTime start,LocalDateTime end){
+        List<Repair> r2=new ArrayList<>();
+        for(Repair repair:repairRepository.findByDatetimeAfterAndDatetimeBefore(start,end))
+            r2.add(repair);
 
+        return r2;
+    }
+
+
+
+
+    @Override
     public  List<Repair> findTop10ByStatusOrderByDatetime(String status){
     List<Repair> r3=new ArrayList<>();
         for(Repair repair:repairRepository.findTop10ByStatusOrderByDatetime(status))

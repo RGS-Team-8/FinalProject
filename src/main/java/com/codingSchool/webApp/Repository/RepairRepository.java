@@ -13,6 +13,8 @@ public interface RepairRepository extends CrudRepository<Repair,Long> {
 
     List<Repair> findAll();
 
+    List<Repair> findByDatetimeAfterAndDatetimeBefore(LocalDateTime start,LocalDateTime end);
+
     Repair save(Repair repair);
 
     Repair delete(long serviceid);

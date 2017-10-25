@@ -2,12 +2,16 @@ package com.codingSchool.webApp.Controllers;
 
 import com.codingSchool.webApp.Converters.RepairUpdater;
 import com.codingSchool.webApp.Converters.UserUpdater;
+import com.codingSchool.webApp.Converters.VehicleUpdater;
 import com.codingSchool.webApp.Domain.Repair;
 import com.codingSchool.webApp.Domain.User;
+import com.codingSchool.webApp.Domain.Vehicle;
 import com.codingSchool.webApp.Model.SearchForm;
 import com.codingSchool.webApp.Model.SearchRepairForm;
+import com.codingSchool.webApp.Model.SearchVehicleForm;
 import com.codingSchool.webApp.Services.RepairService;
 import com.codingSchool.webApp.Services.UserService;
+import com.codingSchool.webApp.Services.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,12 +29,17 @@ public class SearchController {
     private static final String SEARCH_REPAIR_FORM = "searchRepairForm";
     public static final String EMAIL_OR_SSN_LIST = "emailsorssns";
     public static final String REPAIR_LIST = "repairList";
+    private static final String SEARCH_VEHICLE_FORM="searchVehicleForm";
+    private static final String VEHICLE_LIST="vehicleList";
 
     @Autowired
     private UserService userService;
 
     @Autowired
     private RepairService repairService;
+
+    @Autowired
+    private VehicleService vehicleService;
 
     @RequestMapping(value ="/admin/owner/search", method = RequestMethod.GET)
     public String login(Model model) {
@@ -97,7 +106,8 @@ public class SearchController {
                          RedirectAttributes redirectAttributes) {
         List<User> users = userService.findBySsn(searchRepairForm.getSsn());
         List<Repair> repairs = repairService.findByDatetime(searchRepairForm.getDatetime());
-        if(users.isEmpty() && repairs.isEmpty()) {
+        List<Repair> repair1=repairService.findByDatetimeAfterAndDatetimeBefore(searchRepairForm.getDatetime(),searchRepairForm.getDatetime());
+        if(users.isEmpty() && repairs.isEmpty() && repair1.isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
 
             return "redirect:searchRepair";
@@ -138,5 +148,67 @@ public class SearchController {
 
         return "redirect:searchRepair";
     }
+
+
+    ///////////////////////////VEHICLE------------------////////////////
+
+
+    @RequestMapping(value ="/admin/vehicle/searchVehicle", method = RequestMethod.GET)
+    public String searchVehicle(Model model) {
+        model.addAttribute(SEARCH_VEHICLE_FORM, new SearchVehicleForm());
+
+        return "searchVehicle";
+    }
+
+    @RequestMapping(value="/admin/vehicle/searchVehicle", method = RequestMethod.POST)
+    public String searchVehicle(Model model, @ModelAttribute(SEARCH_VEHICLE_FORM) SearchVehicleForm searchVehicleForm,
+                               HttpSession session,
+                               RedirectAttributes redirectAttributes) {
+        List<User> users = userService.findBySsn(searchVehicleForm.getSsn());
+        List<Vehicle> vehicles = vehicleService.findByPlate(searchVehicleForm.getPlate());
+        if(users.isEmpty() && vehicles.isEmpty() ) {
+            redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
+
+            return "redirect:searchVehicle";
+        }
+        if(!users.isEmpty()) {
+            System.err.println("SEARCH: Vehicle search via SSN");
+            model.addAttribute(VEHICLE_LIST, users.get(0).getVehicles());
+            System.err.println(users.get(0).getVehicles());
+            redirectAttributes.addFlashAttribute(VEHICLE_LIST, users.get(0).getVehicles());
+
+            return "redirect:searchVehicle";
+        }
+
+        System.err.println("SEARCH: Vehicle search via Plate");
+        redirectAttributes.addFlashAttribute(VEHICLE_LIST, vehicles);
+
+        return "redirect:searchVehicle";
+    }
+
+    @RequestMapping(value="/admin/vehicle/updateVehicle", method = RequestMethod.POST)
+    public String updateVehicle(@ModelAttribute(SEARCH_VEHICLE_FORM) SearchVehicleForm searchVehicleForm,
+                               BindingResult bindingResult, HttpSession session,
+                               RedirectAttributes redirectAttributes) {
+        Vehicle vehicle = VehicleUpdater.updateVehicleObject(searchVehicleForm);
+        System.err.println("UPDATE: Vehicle belongs to user with UserId: " + vehicle.getId());
+        vehicleService.update(vehicle);
+
+        return "redirect:searchVehicle";
+    }
+
+
+    @RequestMapping(value="/admin/vehicle/deleteVehicle", method = RequestMethod.POST)
+    public String delete(@ModelAttribute(SEARCH_VEHICLE_FORM) SearchVehicleForm searchVehicleForm,
+                         BindingResult bindingResult, HttpSession session,
+                         RedirectAttributes redirectAttributes) {
+
+        System.err.println("DELETE: Vehicle belongs to user with UserId: " + searchVehicleForm.getUserid());
+        vehicleService.delete(searchVehicleForm.getId());
+
+        return "redirect:searchVehicle";
+    }
+
+
 
 }

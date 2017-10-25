@@ -34,6 +34,18 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE}, targetEntity = Repair.class)
     private List<Repair> repairs;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE}, targetEntity = Vehicle.class)
+    private List<Vehicle> vehicles;
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+
 
     public List<Repair> getRepairs() {
         return repairs;

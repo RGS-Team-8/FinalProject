@@ -16,6 +16,8 @@ public interface RepairService{
     //List<Repair> findTop10ByOrderByDatetime();
 
     List<Repair> findByDatetime(LocalDateTime datetime);
+  //  List<Repair> findByDatetimeBetween(LocalDateTime StartDate,LocalDateTime EndDate);
+
 
     void insert(Repair repair);
 
@@ -24,5 +26,7 @@ public interface RepairService{
     void delete(long serviceid);
 
     List<Repair> findTop10ByStatusOrderByDatetime(String status);
+
+    List<Repair> findByDatetimeAfterAndDatetimeBefore(LocalDateTime start,LocalDateTime end);
 
 }

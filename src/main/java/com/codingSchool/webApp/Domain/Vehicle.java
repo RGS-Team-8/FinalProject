@@ -10,9 +10,6 @@ public class Vehicle implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, name = "userid", unique = true)
-    private int userid;
-
     @Column(nullable = false, name = "model")
     private String model;
 
@@ -20,7 +17,7 @@ public class Vehicle implements Serializable {
     private String brand;
 
     @Column(nullable = false, name = "year")
-    private int year;
+    private String year;
 
     @Column(nullable = false, name = "color")
     private String color;
@@ -28,12 +25,16 @@ public class Vehicle implements Serializable {
     @Column(nullable = false, name = "plate", unique = true)
     private String plate;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name="userid", referencedColumnName = "userid")
+    private User user;
+
     public Vehicle() {
     }
 
-    public Vehicle(Long id, int userid, String model, String brand, int year, String color, String plate) {
+    public Vehicle(Long id, User user, String model, String brand, String year, String color, String plate) {
         this.id = id;
-        this.userid = userid;
+        this.user = user;
         this.model = model;
         this.brand = brand;
         this.year = year;
@@ -49,13 +50,10 @@ public class Vehicle implements Serializable {
         this.id = id;
     }
 
-    public int getUserid() {
-        return userid;
+   public User getUser(){return user;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
+    public void setUser(User user){this.user=user;}
 
     public String getModel() {
         return model;
@@ -73,11 +71,11 @@ public class Vehicle implements Serializable {
         this.brand = brand;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
