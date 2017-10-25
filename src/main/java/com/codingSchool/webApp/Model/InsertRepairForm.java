@@ -1,14 +1,19 @@
 package com.codingSchool.webApp.Model;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 public class InsertRepairForm {
 
-    private Long serviceid;
+    private static final String FREETEXT = "^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$";
 
     @NotNull(message = "{insert.cost.null}")
+    @Digits(integer = 10 /*precision*/, fraction = 5/*scale*/)
     private double cost;
 
     @NotNull(message = "{insert.date.null}")
@@ -21,18 +26,14 @@ public class InsertRepairForm {
     @NotNull(message = "{insert.type.null}")
     private String type;
 
+    @NotNull(message = "{insert.freetext.null}")
+    @Pattern(regexp = FREETEXT, message = "{insert.freetext.invalid}")
     private String freetext;
 
     @NotNull(message = "{insert.userid.null}")
+    @Range(min=1, max=1000,message = "insert.userid.invalid")
     private long userid;
 
-    public Long getServiceid() {
-        return serviceid;
-    }
-
-    public void setServiceid(Long serviceid) {
-        this.serviceid = serviceid;
-    }
 
     public double getCost() {
         return cost;

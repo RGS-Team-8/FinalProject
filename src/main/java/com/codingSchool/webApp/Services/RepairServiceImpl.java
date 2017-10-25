@@ -1,7 +1,6 @@
 package com.codingSchool.webApp.Services;
 
 import com.codingSchool.webApp.Domain.Repair;
-import com.codingSchool.webApp.Domain.User;
 import com.codingSchool.webApp.Repository.RepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,6 @@ public class RepairServiceImpl implements RepairService {
     @Autowired
     private  RepairRepository repairRepository;
 
-    public RepairServiceImpl(RepairRepository repairRepository){
-        this.repairRepository=repairRepository;
-    }
 
     public List<Repair> findAll(){
         List<Repair> r1= new ArrayList<>();
@@ -32,14 +28,6 @@ public class RepairServiceImpl implements RepairService {
 
     public void save(Repair repair){
         repairRepository.save(repair);
-    }
-
-    public List<Repair> findTop10ByOrderByDatetime(){
-        List<Repair> r2=new ArrayList<>();
-        for(Repair repair:repairRepository.findTop10ByOrderByDatetime())
-            r2.add(repair);
-
-        return r2;
     }
 
     public List<Repair> findTop10ByStatusOrderByDatetime(String status) {
@@ -70,5 +58,18 @@ public class RepairServiceImpl implements RepairService {
 
         return r2;
     }
+
+    @Override
+    public List<Repair> findByDatetimeBetween(LocalDateTime datetime, LocalDateTime datetime2) {
+        List<Repair> r2=new ArrayList<>();
+        for(Repair repair:repairRepository.findByDatetimeBetween(datetime, datetime2))
+            r2.add(repair);
+
+        return r2;
+    }
+
+//    public querySelector(){
+//
+//    }
 
 }

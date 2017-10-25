@@ -1,7 +1,6 @@
 package com.codingSchool.webApp.Repository;
 
 import com.codingSchool.webApp.Domain.Repair;
-import com.codingSchool.webApp.Domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -21,5 +20,8 @@ public interface RepairRepository extends CrudRepository<Repair,Long> {
 
     List<Repair> findTop10ByOrderByDatetime();
 
+    List<Repair> findByDatetimeBetween(LocalDateTime datetime, LocalDateTime datetime2);
+
     List<Repair> findTop10ByStatusOrderByDatetime(String status);
+
 }

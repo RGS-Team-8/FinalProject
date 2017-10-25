@@ -10,34 +10,17 @@
 <body>
 <@navigationbar.navigationbar tab="admin" />
 
-<form name="searchRepairForm" action="searchRepair" method="post">
+  <form name="searchRepairForm" action="searchRepair" method="post">
+      <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN" />
+      <input type="submit" value="Search"></br>
+      <label>Search by Range of Datetime:</label>
+      <input type="datetime-local" name="datetime" placeholder="Datetime" />
+      <input type="datetime-local" name="datetime2" placeholder="Datetime" />
+      <input type="submit" value="Search"></br>
+  </form>
 
-    <div class="col-sm-2"></div>
-
-    <div class="input-group col-sm-8">
-        <input class="form-control input-lg" type="text" name="ssn" placeholder="search by SSN"/>
-        <div class="input-group-btn">
-            <button class="btn btn-primary input-lg" type="submit" value="Search">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </div>
-    </div>
-
-    <div class="col-sm-2"></div>
-
-    <div class="input-group col-sm-8">
-        <input class="form-control input-lg" type="datetime-local" name="datetime" placeholder="search by Datetime"/>
-        <div class="input-group-btn">
-            <button class="btn btn-primary input-lg" type="submit" value="Search">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </div>
-    </div>
-
-    <div class="col-sm-2"></div>
-
-</form>
-
+  <#if repairList??>
+    <h3>Retrieved Repairs (Search via Ssn)</h3>
 <#if repairList??>
 
     <h3 align="center">Retrieved Repairs (Search via Ssn)</h3>
@@ -113,6 +96,7 @@
     </div>
 
 
+</#if>
 </#if>
 
 </body>
