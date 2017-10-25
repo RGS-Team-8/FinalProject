@@ -151,7 +151,7 @@ public class SearchController {
         return "redirect:searchRepair";
     }
 
-    //=============== R E P A I R
+    //=============== V E H I C L E
 
     @RequestMapping(value ="/admin/vehicle/searchVehicle", method = RequestMethod.GET)
     public String searchVehicle(Model model) {
@@ -197,7 +197,6 @@ public class SearchController {
         return "redirect:searchVehicle";
     }
 
-
     @RequestMapping(value="/admin/vehicle/deleteVehicle", method = RequestMethod.POST)
     public String delete(@ModelAttribute(SEARCH_VEHICLE_FORM) SearchVehicleForm searchVehicleForm,
                          BindingResult bindingResult, HttpSession session,
@@ -208,7 +207,4 @@ public class SearchController {
 
         return "redirect:searchVehicle";
     }
-
-
-
 }

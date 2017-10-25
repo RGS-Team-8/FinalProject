@@ -46,7 +46,28 @@
               </ul>
             </li>
 
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Service<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <#if tab == "create">
+                      <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Create</a></li>
+                      <#else>
+                          <li><a href="http://localhost:8080/admin/vehicle/insertVehicle"><span class="glyphicon glyphicon-user"></span> Create</a></li>
+                  </#if>
+                  <#if tab == "search">
+                      <li class="active"><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+                      <#else>
+                          <li><a href="http://localhost:8080/admin/vehicle/searchVehicle"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+                  </#if>
+              </ul>
+          </li>
+
       </ul>
+
+
+
+        </ul>
+
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/login"><span class="glyphicon glyphicon-log-out" style="color:white"></span><span style="color:white"><b> Log out</b></span></a></li>
          </ul>

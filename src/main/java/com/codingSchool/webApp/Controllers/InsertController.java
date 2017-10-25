@@ -109,7 +109,8 @@ public class InsertController {
         return "/insertRepair";
     }
 
-    ///////////////////////////////////VEHICLE////////////////
+    //=============== V E C H I C L E
+
     @RequestMapping(value ="/admin/vehicle/insertVehicle", method = RequestMethod.GET)
     public String insertVehicle(Model model) {
         model.addAttribute(INSERT_VEHICLE_FORM, new InsertForm());
