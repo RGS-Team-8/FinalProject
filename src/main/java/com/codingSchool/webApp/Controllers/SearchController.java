@@ -6,7 +6,6 @@ import com.codingSchool.webApp.Domain.Repair;
 import com.codingSchool.webApp.Domain.User;
 import com.codingSchool.webApp.Model.SearchForm;
 import com.codingSchool.webApp.Model.SearchRepairForm;
-import com.codingSchool.webApp.Model.SearchRepairForm2;
 import com.codingSchool.webApp.Services.RepairService;
 import com.codingSchool.webApp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
