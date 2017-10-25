@@ -1,9 +1,7 @@
 package com.codingSchool.webApp.Domain;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
-
 
 @Entity
 @Table (name="part")

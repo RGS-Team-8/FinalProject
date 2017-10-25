@@ -1,13 +1,12 @@
 package com.codingSchool.webApp.Domain;
 
 import java.io.Serializable;
-
+import java.time.LocalDateTime;
 import javax.persistence.*;
-
 
 @Entity
 @Table (name="service")
-public class Service implements Serializable {
+public class Repair implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long serviceid;
@@ -16,7 +15,7 @@ public class Service implements Serializable {
     private double cost;
 
     @Column(nullable = false, name = "datetime")
-    private String datetime;
+    private LocalDateTime datetime;
 
     @Column(nullable = false, name = "status")
     private String status;
@@ -31,10 +30,10 @@ public class Service implements Serializable {
     @JoinColumn(name="userid", referencedColumnName = "userid")
     private User user;
 
-    public Service() {
+    public Repair() {
     }
 
-    public Service(Long serviceid, double cost, String datetime, String status, String type, String freetext, User user) {
+    public Repair(Long serviceid, double cost, LocalDateTime datetime, String status, String type, String freetext, User user) {
         this.serviceid = serviceid;
         this.cost = cost;
         this.datetime = datetime;
@@ -51,7 +50,7 @@ public class Service implements Serializable {
     public void setServiceid(Long serviceid) {
         this.serviceid = serviceid;
     }
-git
+
     public double getCost() {
         return cost;
     }
@@ -60,11 +59,11 @@ git
         this.cost = cost;
     }
 
-    public String getDatetime() {
+    public LocalDateTime getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(String datetime) {
+    public void setDatetime(LocalDateTime datetime) {
         this.datetime = datetime;
     }
 
@@ -82,6 +81,10 @@ git
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getFreetext() {

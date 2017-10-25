@@ -6,7 +6,6 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,13 +25,14 @@ public class SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
         if (response.isCommitted()) {
             System.out.println("Can't redirect");
+
             return;
         }
 
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
-    protected String determineTargetUrl(Authentication authentication) { // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>METHOD TO DECIDE ON REDIRECTION URL BASED ON ROLE
+    protected String determineTargetUrl(Authentication authentication) {
 
         String redirectUrl = "";
         Collection<? extends  GrantedAuthority> authorities = authentication.getAuthorities();
@@ -42,15 +42,14 @@ public class SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
             roles.add(ga.getAuthority());
         }
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>roles list:" + roles.toString());
-
+        System.out.println("Role:" + roles.toString());
 
         if (isAdmin(roles)) {
             redirectUrl = "/admin/home";
         } else if (isUser(roles)) {
             redirectUrl = "/user/home";
         } else if(isNotfound(roles)){
-            redirectUrl = "/accessDenied";
+            redirectUrl = "/login";
         }
 
         return redirectUrl;
@@ -58,6 +57,7 @@ public class SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private boolean isUser(List<String> roles) {
         if (roles.contains("USER")) {
+
             return true;
         }
         return false;
@@ -65,6 +65,7 @@ public class SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private boolean isAdmin(List<String> roles) {
         if (roles.contains("ADMIN")) {
+
             return true;
         }
         return false;
@@ -72,6 +73,7 @@ public class SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private boolean isNotfound(List<String> roles) {
         if (roles.contains("notFound")) {
+
             return true;
         }
         return false;

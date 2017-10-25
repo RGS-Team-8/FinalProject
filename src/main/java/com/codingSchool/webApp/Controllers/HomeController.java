@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 @Controller
 public class HomeController {
     private final static org.slf4j.Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -32,7 +31,5 @@ public class HomeController {
         } else {
             model.addAttribute("errorMessage", "User not logged in anymore!");
         }
-
     }
-
 }

@@ -39,14 +39,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         .logoutUrl("/logout") //to url tou Logout
         .logoutSuccessUrl("/login") //redirect sti selida tou Login
         .permitAll();
-
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //auth.userDetailsService(userDetailsService()); //Credentials from UserDetails Service
-        auth.authenticationProvider(loginAuthenticationProvider); //Credentials from repository
-        //auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN"); //Hardcoded Credentials
+        auth.authenticationProvider(loginAuthenticationProvider);
     }
-
 }

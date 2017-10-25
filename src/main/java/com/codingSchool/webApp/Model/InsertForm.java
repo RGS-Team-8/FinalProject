@@ -4,7 +4,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class SearchForm {
+public class InsertForm {
+
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9@.]*$";
 
     private static final String SSN_PATTERN = "^[0-9]*$";
@@ -43,20 +44,24 @@ public class SearchForm {
 
     private long userid;
 
+    public Long getUserid() {
+        return userid;
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public String getFirstname() {
@@ -67,6 +72,22 @@ public class SearchForm {
         this.firstname = firstname;
     }
 
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -75,27 +96,16 @@ public class SearchForm {
         this.address = address;
     }
 
-    public String getTypeofuser() {
+    public String isTypeofuser() {
         return typeofuser;
     }
 
     public void setTypeofuser(String typeofuser) {
         this.typeofuser = typeofuser;
+
     }
 
-    public long getUserid() {
-        return userid;
+    public String getTypeofuser() {
+        return typeofuser;
     }
-
-    public void setUserid(long userid) {
-        this.userid = userid;
-    }
-
-    public String getEmail() { return email; }
-
-    public void setEmail(String email) { this.email = email; }
-
-    public String getSsn() { return ssn; }
-
-    public void setSsn(String ssn) { this.ssn = ssn; }
 }

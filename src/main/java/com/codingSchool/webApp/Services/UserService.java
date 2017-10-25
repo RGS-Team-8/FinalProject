@@ -3,8 +3,8 @@ package com.codingSchool.webApp.Services;
 import com.codingSchool.webApp.Domain.User;
 import org.springframework.security.core.AuthenticationException;
 
+import java.time.LocalDateTime;
 import java.util.List;
-
 
 public interface UserService {
 
@@ -14,6 +14,15 @@ public interface UserService {
 
     List<User> findBySsn(String ssn);
 
+    List<User> findByEmailOrSsn(String email, String ssn);
+
     List<User> findAll();
 
+    void save(User user);
+
+    void insert(User user);
+
+    void update(User user);
+
+    void delete(long userid);
 }

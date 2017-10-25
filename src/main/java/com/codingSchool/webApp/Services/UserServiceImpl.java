@@ -5,7 +5,6 @@ import com.codingSchool.webApp.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -22,6 +21,7 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+
     @Override
     public List<User> findByEmail(String email) { return userRepository.findByEmail(email); }
 
@@ -29,6 +29,26 @@ public class UserServiceImpl implements UserService {
     public List<User> findBySsn(String ssn) { return userRepository.findBySsn(ssn); }
 
     @Override
+    public List<User> findByEmailOrSsn(String email, String ssn) {
+        return userRepository.findByEmailOrSsn(email, ssn);
+    }
+
+    @Override
     public List<User> findAll() { return userRepository.findAll(); }
 
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void insert(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void update(User user) { userRepository.save(user); }
+
+    @Override
+    public void delete(long userid) { userRepository.delete(userid); }
 }

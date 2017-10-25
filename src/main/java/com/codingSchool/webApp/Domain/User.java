@@ -2,9 +2,7 @@ package com.codingSchool.webApp.Domain;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.*;
-
 
 @Entity
 @Table (name="user")
@@ -34,15 +32,15 @@ public class User implements Serializable {
     @Column(nullable = false, name="typeofuser")
     private String typeofuser;
 
-    @OneToMany(mappedBy = "user", targetEntity = Service.class)
-    private List<Service> services;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE}, targetEntity = Repair.class)
+    private List<Repair> repairs;
 
-    public List<Service> getServices() {
-        return services;
+    public List<Repair> getRepairs() {
+        return repairs;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setRepairs(List<Repair> repairs) {
+        this.repairs = repairs;
     }
 
     public User() {
@@ -121,5 +119,9 @@ public class User implements Serializable {
 
     public void setTypeofuser(String typeofuser) {
         this.typeofuser = typeofuser;
+    }
+
+    public String getTypeofuser() {
+        return typeofuser;
     }
 }
