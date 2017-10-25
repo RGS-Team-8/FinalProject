@@ -16,6 +16,8 @@ public interface RepairService{
 
     List<Repair> findByDatetime(LocalDateTime datetime);
 
+    List<Repair> findTop10ByStatusOrderByDatetime(String status);
+
     void insert(Repair repair);
 
     void update(Repair repair);

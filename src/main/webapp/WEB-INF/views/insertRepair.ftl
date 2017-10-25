@@ -2,43 +2,48 @@
 <html>
 
 <head>
-  <#include "master.ftl"/>
-  <title>Insert Repair Page</title>
-  <meta charset="UTF-8">
+    <#include "master.ftl"/>
+    <title>Insert Repair Page</title>
+    <meta charset="UTF-8">
 </head>
 
 <body>
+<@navigationbar.navigationbar tab="admin" />
 
-  <body>
-    <@navigationbar.navigationbar tab="admin" />
-    <form name="insertRepairForm" modelAttribute="insertRepairForm" action="/admin/repair/insertRepair" method="post">
+<div class="container">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
 
+        <h3 align="center">Insert Repair Details</h3>
 
-      <label>Repair Cost:</label><input type="text" name="cost" placeholder="Cost" /><br/>
-      <label>Repair Datetime:</label><input type="datetime-local" name="datetime" placeholder="Datetime" /><br/>
-      <label>Repair Status:</label>
+        <form name="insertRepairForm" modelAttribute="insertRepairForm" action="/admin/repair/insertRepair"
+              method="post">
 
-      <select name="status">
-        <option value="Pending">Pending</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Completed">Completed</option>
-      </select>
+            <label>Repair Cost:</label><input class="form-control input-lg" type="text" name="cost" placeholder="Cost"/><br/>
+            <label>Repair Datetime:</label><input class="form-control input-lg" type="datetime-local" name="datetime" placeholder="Datetime"/><br/>
+            <label>Repair Status:</label>
 
-      <br/>
+            <select class="form-control input-lg" name="status">
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select><br/>
 
-      <label>Repair Type:</label>
+            <label>Repair Type:</label>
 
-        <select name="type">
-            <option value="Minor Service">Minor Service</option>
-            <option value="Major Service">Major Service</option>
-        </select>
+            <select class="form-control input-lg" name="type">
+                <option value="Minor Service">Minor Service</option>
+                <option value="Major Service">Major Service</option>
+            </select><br/>
 
-      <br/>
-      <label>Repair Description:</label><input type="text" name="freetext" placeholder="Description" /><br/>
-      <label>Repair Owner:</label><input type="text" name="userid" placeholder="UserID" /><br/>
+            <label>Repair Description:</label><textarea class="form-control" type="text" rows="3" style="resize:none;" name="freetext" placeholder="Description"/></textarea><br/>
+            <label>Repair Owner:</label><input class="form-control input-lg" type="text" name="userid" placeholder="UserID"/><br/>
 
-      <input type="submit" value="Insert">
-    </form>
-  </body>
+            <input class="btn btn-md col-sm-12 btn-success input-lg" type="submit" value="Insert">
+        </form>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+</body>
 
 </html>

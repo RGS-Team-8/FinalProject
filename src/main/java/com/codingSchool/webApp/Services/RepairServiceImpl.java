@@ -42,6 +42,14 @@ public class RepairServiceImpl implements RepairService {
         return r2;
     }
 
+    public List<Repair> findTop10ByStatusOrderByDatetime(String status) {
+        List<Repair> r3 = new ArrayList<>();
+        for(Repair repair:repairRepository.findTop10ByStatusOrderByDatetime(status))
+            r3.add(repair);
+
+        return r3;
+    }
+
     @Override
     public void insert(Repair repair) {
         repairRepository.save(repair);

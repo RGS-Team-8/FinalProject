@@ -9,16 +9,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><span style="color:white"><b>Car Repair Services</b></span></a>
+      <a class="navbar-brand" href="/admin/home"><span style="color:white"><b>Car Repair Services</b></span></a>
     </div>
 
     <div class="collapse navbar-collapse" id="navigationbar">
       <ul class="nav navbar-nav">
-      <#if tab == "home">
-        <li class="active"><a href="">Home</a></li>
-       <#else>
-        <li><a href="/admin/home">Home</a></li>
-        </#if>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Owner <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -27,11 +22,7 @@
            <#else>
             <li><a href="http://localhost:8080/admin/owner/insert"><span class="glyphicon glyphicon-user"></span> Create</a></li>
            </#if>
-           <#if tab == "edit">
-              <li class="active"><span class="glyphicon glyphicon-pencil"></span> <a href="#">Edit</a></li>
-           <#else>
-               <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
-            </#if>
+
             <#if tab == "search">
               <li class="active"><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
               <#else>
@@ -47,11 +38,6 @@
                   <#else>
                     <li><a href="http://localhost:8080/admin/repair/insertRepair"><span class="glyphicon glyphicon-user"></span> Create</a></li>
                   </#if>
-                  <#if tab == "edit">
-                      <li class="active"><span class="glyphicon glyphicon-pencil"></span> <a href="#">Edit</a></li>
-                  <#else>
-                      <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
-                   </#if>
                   <#if tab == "search">
                       <li class="active"><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
                   <#else>
