@@ -5,35 +5,28 @@
     <meta charset="UTF-8">
     <title>Search Repair Page</title>
 </head>
+
 <body>
 <@navigationbar.navigationbar tab="admin" />
-<form name="searchRepairForm" action="searchRepair" method="post">
-    <div class="col-sm-2"></div>
-    <div class="input-group col-sm-8">
-        <input class="form-control input-lg" type="text" name="ssn" placeholder="search by SSN"/>
-        <div class="input-group-btn">
-            <button class="btn btn-primary input-lg" type="submit" value="Search">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </div>
-    </div>
-    <div class="col-sm-2"></div>
-    <div class="input-group col-sm-8">
-        <input class="form-control input-lg" type="datetime-local" name="datetime" placeholder="search by Datetime"/>
-        <div class="input-group-btn">
-            <button class="btn btn-primary input-lg" type="submit" value="Search">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </div>
-    </div>
-    <div class="col-sm-2"></div>
-</form>
-<#if repairList??>
+
+  <form name="searchRepairForm" action="searchRepair" method="post">
+      <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN" />
+      <input type="submit" value="Search"></br>
+      <label>Search by Range of Datetime:</label>
+      <input type="datetime-local" name="datetime" placeholder="Datetime" />
+      <input type="datetime-local" name="datetime2" placeholder="Datetime" />
+      <input type="submit" value="Search"></br>
+  </form>
+
+  <#if repairList??>
     <h3 align="center">Retrieved Repairs (Search via Ssn)</h3>
+
     <div class="table-responsive">
         <table class="table table-striped">
+
             <#list repairList as repair>
                 <form id="searchRepairResults" name="retrieveRepairData" action="updateRepair" method="post">
+
                     <thead>
                     <tr>
                         <th class="col-sm-1">Id</th>
@@ -87,11 +80,12 @@
                             <input class="btn btn-danger btn-md" id="delete" type="submit" value="Delete">
                         </td>
                     </tr>
-                    </tbody>
-                </form>
+            </tbody>
+            </form>
             </#list>
         </table>
     </div>
+
 </#if>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -99,5 +93,6 @@
 $('#delete').click(function() {
 $('#searchRepairResults').attr('action', 'deleteRepair');
 });
+
 </script>
 </html>

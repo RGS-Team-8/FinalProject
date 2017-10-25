@@ -25,6 +25,12 @@ public class SearchRepairForm {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime datetime;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime datetime2;
+//
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+//    private LocalDateTime datetime3;
+
     private String status;
 
     private String type;
@@ -106,4 +112,20 @@ public class SearchRepairForm {
     public void setUserid(long userid) {
         this.userid = userid;
     }
+
+    public LocalDateTime getDatetime2() {
+        return datetime2;
+    }
+
+    public void setDatetime2(LocalDateTime datetime2) {
+        this.datetime2 = datetime2;
+    }
+//
+//    public LocalDateTime getDatetime3() {
+//        return datetime3;
+//    }
+//
+//    public void setDatetime3(LocalDateTime datetime3) {
+//        this.datetime3 = datetime3;
+//    }
 }

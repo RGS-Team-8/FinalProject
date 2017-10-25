@@ -71,7 +71,7 @@
           <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
-                  <textarea class="form-control" rows="5" id="comment" placeholder="Comments..."></textarea>
+                  <textarea class="form-control" rows="5" style="resize:none;" id="comment" placeholder="Comments..."></textarea>
               </div>
           </div>
       </div>
