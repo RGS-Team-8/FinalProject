@@ -14,7 +14,7 @@
     <label>Search by Email:</label><input type="text" name="email" placeholder="Email" /></br>
     <label>Search by SSN:</label><input id="searchUserBar" type="text" name="ssn" placeholder="SSN" /></br>
 
-    <input id="search" type="submit" value="Search">
+    <input class="btn" id="search" type="submit" value="Search">
   </form>
 
   <#if emailsorssns??>
@@ -32,8 +32,8 @@
         <label>User Address:</label><input type="text" name="address" value="${emailsorssn.address}" /></br>
         <label>User Type:</label><input type="text" name="typeofuser" value="${emailsorssn.typeofuser}" />
 
-        <input id="update" type="submit" value="Update">
-        <input id="delete" type="submit" value="Delete">
+        <input class="btn" id="update" type="submit" value="Update">
+        <input class="btn btn-danger" id="delete" type="submit" value="Delete">
       </form>
 
     </#list>
@@ -42,9 +42,9 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-  $('#search').click(function() {
-    if ($('#searchUserBar').val().indexOf('@') >=0) {
-    $('#searchUserBar').attr('name', 'email'); }
+  $("#search").click(function() {
+    if ($(document.forms["searchUserBar"].value).indexOf("@") >=0) {
+    $("#searchUserBar").attr("name", "email"); }
   });
 </script>
 <script type="text/javascript">

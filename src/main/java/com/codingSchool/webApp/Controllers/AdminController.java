@@ -28,7 +28,6 @@ public class AdminController {
     public String admin(Model model) {
         logger.info("Into the admin page controller");
         model.addAttribute("message", "Hello Admin");
-       // String p1="Pending";
         model.addAttribute(REPAIR_LIST, repairService.findTop10ByStatusOrderByDatetime("Pending"));
         addUsernameInModel(model);
 

@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><span style="color:white"><b>Car Repair Services</b></span></a>
+      <a class="navbar-brand" href="/user/home"><span style="color:white"><b>Car Repair Services</b></span></a>
     </div>
 
     <div class="collapse navbar-collapse" id="navbaruser">
@@ -16,7 +16,7 @@
       <#if tab == "home">
         <li class="active"><a href="#">Home</a></li>
        <#else>
-        <li><a href="#">Home</a></li>
+        <li><a href="/user/home">Home</a></li>
         </#if>
       </ul>
         <ul class="nav navbar-nav navbar-right">

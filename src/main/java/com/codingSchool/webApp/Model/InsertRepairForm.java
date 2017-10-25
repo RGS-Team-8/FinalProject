@@ -10,12 +10,7 @@ import java.time.LocalDateTime;
 
 public class InsertRepairForm {
 
-
     private static final String FREETEXT = "^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$";
-
-
-
-//    private static final int USER_ID_MINSIZE = 9;
 
     @NotNull(message = "{insert.cost.null}")
     @Digits(integer = 10 /*precision*/, fraction = 5/*scale*/)
