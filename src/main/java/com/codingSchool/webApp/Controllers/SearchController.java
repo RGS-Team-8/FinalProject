@@ -6,6 +6,7 @@ import com.codingSchool.webApp.Domain.Repair;
 import com.codingSchool.webApp.Domain.User;
 import com.codingSchool.webApp.Model.SearchForm;
 import com.codingSchool.webApp.Model.SearchRepairForm;
+import com.codingSchool.webApp.Model.SearchRepairForm2;
 import com.codingSchool.webApp.Services.RepairService;
 import com.codingSchool.webApp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,34 +94,31 @@ public class SearchController {
 
     @RequestMapping(value="/admin/repair/searchRepair", method = RequestMethod.POST)
     public String searchRepair(Model model, @ModelAttribute(SEARCH_REPAIR_FORM) SearchRepairForm searchRepairForm,
-                         HttpSession session,
-                         RedirectAttributes redirectAttributes) {
+                               HttpSession session,
+                               RedirectAttributes redirectAttributes) {
         List<User> users = userService.findBySsn(searchRepairForm.getSsn());
-        List<Repair> repairs = repairService.findByDatetime(searchRepairForm.getDatetime());
-        List<Repair> repairs2 = repairService.findByDatetimeBetween(searchRepairForm.getDatetime(), searchRepairForm.getDatetime());
 
-        if(users.isEmpty() && repairs.isEmpty() && repairs2.isEmpty()) {
-        //if(users.isEmpty() && repairs.isEmpty()) {
-            redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
-
-            return "redirect:searchRepair";
+        if (users.isEmpty()) {
+            if (searchRepairForm.getDatetime2() == null) {
+                List<Repair> repairs2 = repairService.findByDatetime(searchRepairForm.getDatetime());
+                redirectAttributes.addFlashAttribute(REPAIR_LIST, repairs2);
+                return "redirect:searchRepair";
+            }
+            List<Repair> repairs2 = repairService.findByDatetimeBetween(searchRepairForm.getDatetime(), searchRepairForm.getDatetime2());
+            if (repairs2.isEmpty()) {
+                redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
+                return "redirect:searchRepair";
+            } else {
+                System.err.println("SEARCH: Repair search via Range of Datetime");
+                redirectAttributes.addFlashAttribute(REPAIR_LIST, repairs2);
+                return "redirect:searchRepair";
+            }
         }
 
-        if(!users.isEmpty()) {
-            System.err.println("SEARCH: Repair search via SSN");
-            model.addAttribute(REPAIR_LIST, users.get(0).getRepairs());
-            System.err.println(users.get(0).getRepairs());
-            redirectAttributes.addFlashAttribute(REPAIR_LIST, users.get(0).getRepairs());
-            return "redirect:searchRepair";
-
-        }else if(!repairs.isEmpty()){
-            System.err.println("SEARCH: Repair search via Datetime");
-            redirectAttributes.addFlashAttribute(REPAIR_LIST, repairs);
-            return "redirect:searchRepair";
-        }
-
-        System.err.println("SEARCH: Repair search via Datetime");
-        redirectAttributes.addFlashAttribute(REPAIR_LIST, repairs2);
+        System.err.println("SEARCH: Repair search via SSN");
+        model.addAttribute(REPAIR_LIST, users.get(0).getRepairs());
+        System.err.println(users.get(0).getRepairs());
+        redirectAttributes.addFlashAttribute(REPAIR_LIST, users.get(0).getRepairs());
         return "redirect:searchRepair";
     }
 
@@ -142,7 +140,6 @@ public class SearchController {
 
         System.err.println("DELETE: Repair belongs to user with UserId: " + searchRepairForm.getUserid());
         repairService.delete(searchRepairForm.getServiceid());
-
         return "redirect:searchRepair";
     }
 

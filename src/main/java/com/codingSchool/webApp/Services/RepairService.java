@@ -11,8 +11,6 @@ public interface RepairService{
 
     void save(Repair repair);
 
-    List<Repair> findTop10ByOrderByDatetime();
-
     //List<Repair> findTop10ByOrderByDatetime();
 
     List<Repair> findByDatetime(LocalDateTime datetime);

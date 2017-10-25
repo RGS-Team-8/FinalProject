@@ -11,13 +11,21 @@
   <@navigationbar.navigationbar tab="admin" />
 
   <form name="searchRepairForm" action="searchRepair" method="post">
-      <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN" /></br>
-      <label>Search by Datetime:</label><input type="datetime-local" name="datetime" placeholder="Datetime" /></br>
+      <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN" />
+      <input type="submit" value="Search"></br>
+      <#--<label>Search by Datetime:</label><input type="datetime-local" name="datetime" placeholder="Datetime" />-->
       <label>Search by Range of Datetime:</label>
-      <input type="datetime-local" name="datetime" placeholder="Datetime" />
-      <input type="datetime-local" name="datetime" placeholder="Datetime" /></br>
-      <input type="submit" value="Search">
+          <input type="datetime-local" name="datetime" placeholder="Datetime" />
+          <input type="datetime-local" name="datetime2" placeholder="Datetime" />
+      <input type="submit" value="Search"></br>
   </form>
+
+      <#--<form name="searchRepairForm" action="searchRepair" method="post">-->
+          <#--<label>Search by Range of Datetime:</label>-->
+          <#--<input type="datetime-local" name="datetime" placeholder="Datetime" />-->
+          <#--<input type="datetime-local" name="datetime2" placeholder="Datetime" /></br>-->
+          <#--<input type="submit" value="Search">-->
+      <#--</form>-->
 
   <#if repairList??>
     <h3>Retrieved Repairs (Search via Ssn)</h3>

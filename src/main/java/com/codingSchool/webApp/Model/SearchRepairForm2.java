@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-public class SearchRepairForm {
+public class SearchRepairForm2 {
 
     private static final String SSN_PATTERN = "^[0-9]*$";
     private static final int SSN_MINSIZE = 9;
@@ -27,9 +27,6 @@ public class SearchRepairForm {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime datetime2;
-//
-//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-//    private LocalDateTime datetime3;
 
     private String status;
 
@@ -54,7 +51,7 @@ public class SearchRepairForm {
     }
 
     public void setSsn(String ssn) {
-            this.ssn = ssn;
+        this.ssn = ssn;
     }
 
     public Long getServiceid() {
@@ -120,12 +117,4 @@ public class SearchRepairForm {
     public void setDatetime2(LocalDateTime datetime2) {
         this.datetime2 = datetime2;
     }
-//
-//    public LocalDateTime getDatetime3() {
-//        return datetime3;
-//    }
-//
-//    public void setDatetime3(LocalDateTime datetime3) {
-//        this.datetime3 = datetime3;
-//    }
 }
