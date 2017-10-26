@@ -1,4 +1,5 @@
 <#macro navigationbar tab>
+
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -32,7 +33,7 @@
                             <#if tab == "create">
                                 <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Create</a></li>
                                 <#else>
-                                    <li><a href="http://localhost:8080/admin/repair/insertRepair"><span class="glyphicon glyphicon-user"></span> Create</a></li>
+                                    <li><a href="http://localhost:8080/admin/repair/insertRepair"><span class="glyphicon glyphicon-wrench"></span> Create</a></li>
                             </#if>
                             <#if tab == "search">
                                 <li class="active"><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
@@ -47,7 +48,7 @@
                             <#if tab == "create">
                                 <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Create</a></li>
                                 <#else>
-                                    <li><a href="http://localhost:8080/admin/vehicle/insertVehicle"><span class="glyphicon glyphicon-user"></span> Create</a></li>
+                                    <li><a href="http://localhost:8080/admin/vehicle/insertVehicle"><span class="glyphicon glyphicon-road"></span> Create</a></li>
                             </#if>
                             <#if tab == "search">
                                 <li class="active"><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
@@ -64,6 +65,7 @@
             </div>
         </div>
     </nav>
+
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container-fluid">
             <li role="separator" class="divider"></li>
@@ -72,4 +74,6 @@
         </div>
         </div>
     </nav>
+
+
 </#macro>

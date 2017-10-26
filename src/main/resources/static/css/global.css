@@ -2,7 +2,11 @@
 
 body {
     background-image:url('/img/audi.png') no-repeat center top scroll;
-      background-size: 100% auto;
+    background-size: 100% auto;
+}
+
+.well {
+    padding-bottom: 50;
 }
 
 .form-conatiner{border:1px solid #fff; padding:50px 60px; margin-top:4vh;
