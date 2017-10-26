@@ -22,7 +22,7 @@
           <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input name="first_name" placeholder="First name" class="form-control"
+                  <input name="firstname" placeholder="First name" class="form-control"
                          type="text" id="firstName"
                          pattern="[A-Za-z]+"
                          oninvalid="this.setCustomValidity('Required, please enter your first name.Your first name may only contain lower and upper-case letters.')"

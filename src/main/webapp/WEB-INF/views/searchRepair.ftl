@@ -10,12 +10,26 @@
 <@navigationbar.navigationbar tab="admin" />
 
   <form name="searchRepairForm" action="searchRepair" method="post">
-      <label>Search by SSN:</label><input type="text" name="ssn" placeholder="SSN" />
-      <input type="submit" value="Search"></br>
+      <div class="col-md-6" >
+
+          <label>Search by SSN:</label>
+          <div class="input-group">
+              <input type="text" class="form-control" placeholder="SSN" name="Ssn" id="ssn">
+              <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+              </div>
+          </div>
+      </div>
       <label>Search by Range of Datetime:</label>
-      <input type="datetime-local" name="datetime" placeholder="Datetime" />
-      <input type="datetime-local" name="datetime2" placeholder="Datetime" />
-      <input type="submit" value="Search"></br>
+      <div class="input-group">
+          <input type="datetime-local" class="form-control" placeholder="Datetime" name="datetime" >
+
+          <input type="datetime-local" class="form-control" placeholder="Datetime" name="datetime">
+          <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          </div>
+      </div>
+
   </form>
 
   <#if repairList??>
@@ -76,7 +90,7 @@
                                                     value="${repair.user.userid}"/>
                         </td>
                         <td class="col-sm-1">
-                            <input class="btn btn-md" id="update" type="submit" value="Update">
+                            <input class="btn btn-md" id="update" type="submit" href="admin/repair/searchRepair" value="Update">
                             <input class="btn btn-danger btn-md" id="delete" type="submit" value="Delete">
                         </td>
                     </tr>
