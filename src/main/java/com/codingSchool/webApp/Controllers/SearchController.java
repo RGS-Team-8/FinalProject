@@ -15,16 +15,19 @@ import com.codingSchool.webApp.Services.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class SearchController {
+    private final static org.slf4j.Logger logger = LoggerFactory.getLogger(InsertController.class);
     private static final String SEARCH_FORM = "searchForm";
     private static final String SEARCH_REPAIR_FORM = "searchRepairForm";
     public static final String EMAIL_OR_SSN_LIST = "emailsorssns";
@@ -68,18 +71,26 @@ public class SearchController {
     }
 
     @RequestMapping(value="/admin/owner/update", method = RequestMethod.POST)
-    public String update(@ModelAttribute(SEARCH_FORM) SearchForm searchForm,
+    public String update( @Valid @ModelAttribute(SEARCH_FORM) SearchForm searchForm,
                          BindingResult bindingResult, HttpSession session,
                          RedirectAttributes redirectAttributes) {
 
-        User user = UserUpdater.updateUserObject(searchForm);
-        System.err.println("UPDATE: User with UserId:" + user.getUserid());
-        userService.update(user);
-        session.setAttribute("username", searchForm.getUserid());
-
-        return "redirect:search";
+        if (bindingResult.hasErrors()) {
+            logger.error(String.format("%s Validation Errors present: ", bindingResult.getErrorCount()));
+            return "redirect:search";
+        }
+        try {
+            User user = UserUpdater.updateUserObject(searchForm);
+            System.err.println("UPDATE: User with UserId:" + user.getUserid());
+            userService.update(user);
+            session.setAttribute("username", searchForm.getUserid());
+            return "redirect:search";
+        } catch (Exception exception) {
+                redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
+                logger.error("User registration failed: " + exception);
+            return "redirect:search";
+        }
     }
-
     @RequestMapping(value="/admin/owner/delete", method = RequestMethod.POST)
     public String delete(@ModelAttribute(SEARCH_FORM) SearchForm searchForm,
                          BindingResult bindingResult, HttpSession session,
@@ -131,13 +142,13 @@ public class SearchController {
     }
 
     @RequestMapping(value="/admin/repair/updateRepair", method = RequestMethod.POST)
-    public String updateRepair(@ModelAttribute(SEARCH_REPAIR_FORM) SearchRepairForm searchRepairForm,
+    public String updateRepair(@Valid @ModelAttribute(SEARCH_REPAIR_FORM) SearchRepairForm searchRepairForm,
                          BindingResult bindingResult, HttpSession session,
                          RedirectAttributes redirectAttributes) {
         Repair repair = RepairUpdater.updateRepairObject(searchRepairForm);
         System.err.println("UPDATE: Repair belongs to user with UserId: " + repair.getServiceid());
         repairService.update(repair);
-
+        session.setAttribute("username", searchRepairForm.getUserid());
         return "redirect:searchRepair";
     }
 
@@ -190,10 +201,9 @@ public class SearchController {
     public String updateVehicle(@ModelAttribute(SEARCH_VEHICLE_FORM) SearchVehicleForm searchVehicleForm,
                                BindingResult bindingResult, HttpSession session,
                                RedirectAttributes redirectAttributes) {
-        Vehicle vehicle = VehicleUpdater.updateVehicleObject(searchVehicleForm);
-        System.err.println("UPDATE: Vehicle belongs to user with UserId: " + vehicle.getId());
-        vehicleService.update(vehicle);
-
+            Vehicle vehicle = VehicleUpdater.updateVehicleObject(searchVehicleForm);
+            System.err.println("UPDATE: Vehicle belongs to user with UserId: " + vehicle.getId());
+            vehicleService.update(vehicle);
         return "redirect:searchVehicle";
     }
 
@@ -204,7 +214,6 @@ public class SearchController {
 
         System.err.println("DELETE: Vehicle belongs to user with UserId: " + searchVehicleForm.getUserid());
         vehicleService.delete(searchVehicleForm.getId());
-
         return "redirect:searchVehicle";
     }
 }

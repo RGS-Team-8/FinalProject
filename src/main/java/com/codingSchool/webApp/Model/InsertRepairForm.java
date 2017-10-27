@@ -3,15 +3,20 @@ package com.codingSchool.webApp.Model;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.annotation.security.PermitAll;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 public class InsertRepairForm {
 
-    private static final String FREETEXT = "^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$";
 
+   // private static final String COST_PATTERN = "[0-9]{1,13}(\\.[0-9]*)?";
+    private static final String USERID_PATTERN = "^[0-9]*$";
+
+    //@Pattern(regexp = COST_PATTERN, message = "{insert.cost.invalid}")
     @NotNull(message = "{insert.cost.null}")
     @Digits(integer = 10 /*precision*/, fraction = 5/*scale*/)
     private double cost;
@@ -26,14 +31,14 @@ public class InsertRepairForm {
     @NotNull(message = "{insert.type.null}")
     private String type;
 
+    @Size(min=2)
     @NotNull(message = "{insert.freetext.null}")
-    @Pattern(regexp = FREETEXT, message = "{insert.freetext.invalid}")
     private String freetext;
 
+    //@Pattern(regexp = USERID_PATTERN, message = "{insert.userid.invalid}")
     @NotNull(message = "{insert.userid.null}")
     @Range(min=1, max=1000,message = "insert.userid.invalid")
     private long userid;
-
 
     public double getCost() {
         return cost;

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+
 @Controller
 public class LoginController {
 
@@ -17,7 +19,7 @@ public class LoginController {
     private static final String LOGIN_FORM = "loginForm";
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, @RequestParam(name = "error", required = false) String error) {
+    public String login(Model model, @Valid @RequestParam(name = "error", required = false) String error) {
         if (error != null) {
             LOG.error("User not found!");
             model.addAttribute("errorMessage", "User not found! Please try again");

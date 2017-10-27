@@ -54,7 +54,6 @@ public class InsertController {
                          RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             logger.error(String.format("%s Validation Errors present: ", bindingResult.getErrorCount()));
-
             return "insert";
         }
 
@@ -66,7 +65,6 @@ public class InsertController {
         } catch (Exception exception) {
             redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
             logger.error("User registration failed: " + exception);
-
             return "/insert";
         }
         redirectAttributes.addFlashAttribute("message", "You have sucessfully completed registration");
@@ -90,23 +88,21 @@ public class InsertController {
                                RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             logger.error(String.format("%s Validation Errors present: ", bindingResult.getErrorCount()));
-
             return "insertRepair";
         }
 
         try {
             Repair repair = RepairConverter.buildRepairObject(insertRepairForm);
             repairService.insert(repair);
-
+            redirectAttributes.addFlashAttribute("message", "You have sucessfully completed registration");
+            return "/insertRepair";
         } catch (Exception exception) {
             redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
             logger.error("Repair registration failed: " + exception);
 
             return "/insertRepair";
         }
-        redirectAttributes.addFlashAttribute("message", "You have sucessfully completed registration");
-
-        return "/insertRepair";
+        //return "/insertRepair";
     }
 
     //=============== V E C H I C L E
@@ -125,22 +121,17 @@ public class InsertController {
                                 RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()) {
             logger.error(String.format("%s Validation Errors present: ", bindingResult.getErrorCount()));
-
             return "insertVehicle";
         }
-
         try {
             Vehicle vehicle = VehicleConverter.buildVehicleObject(insertVehicleForm);
             vehicleService.insert(vehicle);
-
         } catch (Exception exception) {
             redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
             logger.error("Vehicle registration failed: " + exception);
-
             return "/insertVehicle";
         }
         redirectAttributes.addFlashAttribute("message", "You have sucessfully completed registration");
-
         return "/insertVehicle";
     }
 }

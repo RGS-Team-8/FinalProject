@@ -1,8 +1,10 @@
 package com.codingSchool.webApp.Model;
 
 import com.codingSchool.webApp.Domain.User;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -18,8 +20,11 @@ public class SearchRepairForm {
     @Size(min = SSN_MINSIZE, message = "{insert.ssn.size}")
     private String ssn;
 
+    @NotNull(message = "{insert.serviceid.null}")
     private Long serviceid;
 
+    @NotNull(message = "{insert.cost.null}")
+    @Digits(integer = 10 /*precision*/, fraction = 5/*scale*/)
     private double cost;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -27,18 +32,21 @@ public class SearchRepairForm {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime datetime2;
-//
-//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-//    private LocalDateTime datetime3;
 
+    @NotNull(message = "{insert.status.null}")
     private String status;
 
+    @NotNull(message = "{insert.type.null}")
     private String type;
 
+    @NotNull(message = "{insert.freetext.null}")
     private String freetext;
 
+    @NotNull(message = "{Object user can not be null}")
     private User user;
 
+    @NotNull(message = "{insert.userid.null}")
+    @Range(min=1, max=1000,message = "insert.userid.invalid")
     private long userid;
 
     public User getUser() {
@@ -120,12 +128,4 @@ public class SearchRepairForm {
     public void setDatetime2(LocalDateTime datetime2) {
         this.datetime2 = datetime2;
     }
-//
-//    public LocalDateTime getDatetime3() {
-//        return datetime3;
-//    }
-//
-//    public void setDatetime3(LocalDateTime datetime3) {
-//        this.datetime3 = datetime3;
-//    }
 }
