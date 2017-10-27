@@ -18,10 +18,13 @@
     <div class="row">
         <div class="col-xs-12">
             <table class="table">
-                <h3>Retrieved Repairs:</h3>
+
+                <h3 align="center">Retrieved Repairs:</h3>
+                    </div>
                 <#list repairList as repair>
                     <thead>
                     <tr>
+                        <td class="col-sm-1 "></td>
                         <td> Cost</td>
                         <td> Datetime</td>
                         <td> Status</td>
@@ -30,6 +33,7 @@
                     </thead>
                     <tbody>
                     <tr>
+                        <td class="col-sm-1 "></td>
                         <td> ${repair.cost}</td>
                         <td> ${repair.datetime}</td>
                         <td> ${repair.status}</td>

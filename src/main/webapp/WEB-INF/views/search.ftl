@@ -6,15 +6,15 @@
 <#include "master.ftl"/>
     <meta charset="UTF-8">
     <title>Search Owner Page</title>
-
 </head>
 
 <body>
 <@navigationbar.navigationbar tab="admin" />
+<div class="container-fluid" style="margin-bottom: 70px">
 <div class="container">
     <div class="row">
 
-        <form class="form-inline" role="search" name="searchForm" action="search" method="post">
+        <form role="search" name="searchForm" action="search" method="post">
             <div class="col-md-6" >
 
                 <label>Search by Email:</label>
@@ -33,16 +33,14 @@
                 </div>
             </div>
 
-        </form>
     </div>
 </div>
 <#if emailsorssns??>
-<center><h3><b>Retrieved Users (Search via Email Or Ssn)</b></h3></center>>
+<center><h3><b>Retrieved Users (Search via Email Or Ssn)</b></h3></center>
 
 <div class="table-responsive">
     <table class="table table-striped">
         <form  id="searchResults" name="retrieveUserData" action="update" method="post">
-
             <thead>
             <tr>
                 <th>User Id</th>
@@ -54,7 +52,6 @@
                 <th>Address</th>
                 <th>User Type</th>
                 <th colspan="2">Action</th>
-
             </tr>
             </thead>
         <tbody>
@@ -62,10 +59,10 @@
               <thead>
               <tr>
                   <td class="col-sm-1"><input class="form-control" type="text" name="userid"
-                                              value="${emailsorssn.userid}"/></td>
+                                              value="${emailsorssn.userid}" readonly/></td>
                   <td class="col-sm-1"><input class="form-control" type="text" name="ssn"
                                               value="${emailsorssn.ssn}"/></td>
-                  <td class="col-sm-2"><input class="form-control" type="password" name="password"
+                  <td class="col-sm-2"><input class="form-control" type="text" name="password"
                                               value="${emailsorssn.password}"/></td>
                   <td class="col-sm-1"><input class="form-control" type="text" name="firstname"
                                               value="${emailsorssn.firstname}"/></td>
@@ -76,10 +73,19 @@
 
                   <td class="col-sm-1"><input class="form-control" type="text" name="address"
                                               value="${emailsorssn.address}"/></td>
-                  <td class="col-sm-1"><input class="form-control" type="text" name="typeofuser"
-                                              value="${emailsorssn.typeofuser}"/></td>
+                  <td class="col-sm-1"><select class="form-control" name="typeofuser">
+                      <option value="Pending"
+                          <#if ("${emailsorssn.typeofuser}" == "ADMIN") > selected="selected"</#if>
+                      >ADMIN</option>
+                      <option value="In Progress"
+                          <#if ("${emailsorssn.typeofuser}" == "USER") > selected="selected"</#if>
+                      >USER</option>
+                  </select></td>
+
                   <td class="col-sm-1">
                       <input class="btn btn-md" id="update" type="submit" value="Update">
+                      </td>
+                  <td class="col-sm-1">
                       <input class="btn btn-danger btn-md" id="delete" type="submit" value="Delete">
                   </td>
               </tr>
@@ -91,8 +97,11 @@
     </table>
 </div>
 </#if>
-
+</div>
 </body>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
     $("#search").click(function() {

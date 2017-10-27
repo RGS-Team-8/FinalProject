@@ -9,7 +9,7 @@
 
 <body>
 <@navigationbar.navigationbar tab="admin" />
-
+<div class="container-fluid" style="margin-bottom: 70px">
 <form  role="search" name="searchVehicleForm" action="searchVehicle" method="post">
     <div class="col-md-6" >
 
@@ -49,6 +49,8 @@
                   <th class="col-sm-1">Color</th>
                   <th class="col-sm-4">Plate</th>
                   <th class="col-sm-1">Owner</th>
+                  <th class="col-sm-1"></th>
+                  <th class="col-sm-1"></th>
 
               </tr>
               </thead>
@@ -63,15 +65,19 @@
 
                   <td class="col-sm-1"><input class="form-control" type="text" name="year"
                                               value="${vehicle.year}"/></td>
-                  <td class="col-sm-1"><input class="form-control" type="color" name="color"
+                  <td class="col-sm-1"><input class="form-control" type="text" name="color"
                                               value="${vehicle.color}"/></td>
                   <td class="col-sm-2"><input class="form-control" type="text" name="plate"
                                               value="${vehicle.plate}"/></td>
-                  <td class="col-sm-1"><input class="form-control" type="text" name="user.userid"
+                  <td class="col-sm-1"><input class="form-control" type="text" name="userid"
                                               value="${vehicle.user.userid}"/></td>
+                  <td class="col-sm-1">
                   <input class="btn btn-md" id="update" type="submit" value="Update">
+                      </td>
+                  <td class="col-sm-1">
                   <input class="btn btn-danger btn-md" id="delete" type="submit" value="Delete">
                   </td>
+
               </tr>
               </tbody>
 
@@ -79,6 +85,7 @@
           </form>
       </#list>
     </table>
+</div>
 </div>
 </#if>
 

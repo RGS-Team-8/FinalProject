@@ -8,33 +8,47 @@
 
 <body>
 <@navigationbar.navigationbar tab="admin" />
-
+<div class="container-fluid" style="margin-bottom: 70px">
 <form name="searchRepairForm" action="searchRepair" method="post">
 
-            <#--<label>Search by SSN:</label>-->
-                <div class="col-md-2" ></div>
-                <div class="col-md-8" >
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="SSN" name="Ssn" id="ssn">
-                        <div class="input-group-btn">
-                           <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2" ></div>
+    <div class="col-md-2" ></div>
+        <table class="input-group col-md-10">
+            <thead>
+                <th>
+                    <label>Search by SSN:</label>
+                </th>
+            </thead>
+
+            <tbody>
+                <td>
+                    <input type="text" class="form-control" placeholder="SSN" name="Ssn" id="ssn">
+                </td>
+                <td>
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </td>
+            </tbody>
+        </table>
+    <br></br>
+    <div class="col-md-6" >
+
+        <label>Search by Email:</label>
+        <div class="input-group">
+            <input type="datetime-local" class="form-control" placeholder="Datetime" name="datetime" >
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+    </div>
+    <label>Search by Plate:</label>
+    <div class="input-group">
+        <input type="datetime-local" class="form-control" placeholder="Datetime" name="datetime">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div>
+    </div>
 
 
-                <div class="input-group">
-                    <div class="col-md-6" >
-                        <input type="datetime-local" class="form-control" placeholder="Datetime" name="datetime" >
-                    </div>
-                    <div class="col-md-6">
-                        <input type="datetime-local" class="form-control" placeholder="Datetime" name="datetime">
-                    </div>
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                     </div>
-                </div>
 </form>
 
 <#if repairList??>
@@ -109,6 +123,7 @@
 </div>
 
 </#if>
+</div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
