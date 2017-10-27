@@ -11,12 +11,11 @@
 <@navbaruser.navbaruser tab="user"/>
 
 <#if repairList??>
-<h3>Retrieved Repairs:</h3>
-<div class="container">
-<div class="row">
-<div class="col-xs-12">
-<table class="table">
+    <center><h3><b>Retrieved Repairs:</b></h3></center>
+    <div class="table-responsive">
+<table class="table-table-striped">
   <#list repairList as repair>
+      <form id="RetrivedRepairs" name="RetrievedRepairs" action="RetrievedRepairs">
     <thead>
         <tr>
             <td> Cost</td>
@@ -33,10 +32,9 @@
             <td> ${repair.type}</td>
         </tr>
         </tbody>
-
+      </form>
     </#list>
 </table>
-</div>
 </div>
 </div>
 <#else>
