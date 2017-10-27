@@ -9,9 +9,6 @@
 <@navigationbar.navigationbar tab="admin" />
 <div class="container-fluid" style="margin-bottom: 70px">
 <#if username??>
-  <#--<h1 align="center"> Welcome, ${username}</h1>-->
-  <#--<h2 align="center">${message!""}</h2>-->
-  <#--<h2 align="center">${errorMessage!""}</h2>-->
   <#if repairList??>
     <h3 align="center">Retrieved Repairs:</h3>
     <div class="table-responsive">
